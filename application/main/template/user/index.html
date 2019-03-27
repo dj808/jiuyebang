@@ -1,0 +1,203 @@
+{include file="layouts/header.html"}
+<div style="">
+    <blockquote class="layui-elem-quote ala-search-bar">
+        <form class="layui-form layui-inline">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <input type="text" name="search" placeholder="昵称或手机号码" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <select name="real_status" class="newsLook" lay-filter="search-select">
+                            <option value="">请选择审核状态</option>
+                            {foreach from=$realList key=key item=row}
+                            <option value="{$row.id}">{$row.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <select name="type" class="newsLook" lay-filter="search-select">
+                            <option value="">请选择账户类型</option>
+                            {foreach from=$typeList key=key item=row}
+                            <option value="{$row.id}">{$row.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <select name="status" class="newsLook" lay-filter="search-select">
+                            <option value="">请选择登录状态</option>
+                            {foreach from=$statusList key=key item=row}
+                            <option value="{$row.id}">{$row.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户性别</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="gender" value="" title="全部" checked="">
+                        <input type="radio" name="gender" value="1" title="男" >
+                        <input type="radio" name="gender" value="2" title="女">
+                        <input type="radio" name="gender" value="3" title="保密">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">种子用户</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="is_seed" value="" title="全部" checked="">
+                        <input type="radio" name="is_seed" value="1" title="是" >
+                        <input type="radio" name="is_seed" value="2" title="否">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-sm ala-btn-search" lay-submit lay-filter="search"><i class="layui-icon">&#xe615;</i>搜索</button>
+                </div>
+            </div>
+        </form>
+      <!--<div>
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <select name="coupon_id" class="coupon_id" lay-filter="coupon_id">
+                        <option value="">请选择优惠券</option>
+                        {foreach from=$couponList key=key item=row}
+                        <option value="{$row.id}">{$row.name}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn" data-type="getCheckData">发放</button>
+            </div>
+        </div>-->
+    </blockquote>
+    <div style="padding: 0 10px;">
+        <table id="list" lay-filter="list-table" data-sort="true" ></table>
+    </div>
+    <script type="text/html" id="list-bar">
+        <div class="layui-btn-group">
+            <button class="layui-btn layui-btn-sm" lay-event="detail" title="详情"><i class="fa fa-eye"></i></button>
+            <button class="layui-btn layui-btn-sm" lay-event="edit" title="编辑"><i class="fa fa-pencil-square-o"></i></button>
+        </div>
+    </script>
+    <script>
+    layui.use(['form', 'layer', 'table'], function() {
+        var $ = layui.jquery,
+            form = layui.form,
+            layer = layui.layer,
+            table = layui.table;
+
+        layer.load();
+        table.render({
+            id: 'list',
+            elem: '#list',
+            width: 'auto',
+            height: 'full-70',
+            cols: [
+                [
+                {
+                    type:'checkbox',
+                    fixed: 'left'
+                },
+                {
+                    field: 'id',
+                    title: 'ID',
+                    width: 100,
+                    sort: true,
+                }, {
+                    field: 'nickname',
+                    title: '昵称',
+                    width: 100,
+                }, {
+                    field: 'gender',
+                    title: '性别',
+                    width: 50,
+                }, {
+                    field: 'mobile',
+                    title: '手机号码',
+                    width: 150,
+                }, {
+                    field: 'type',
+                    title: '账号类型',
+                    width: 150,
+                    sort: true,
+                },{
+                    field: 'status',
+                    title: '登录状态',
+                    width: 100,
+                },{
+                    field: 'real_status',
+                    title: '认证状态',
+                    width: 100,
+                },{
+                    field: 'is_seed',
+                    title: '种子用户',
+                    width: 100,
+                    sort: true,
+                },{
+                    field: 'follow',
+                    title: '关注数',
+                    width: 80,
+                    sort: true,
+                },{
+                    field: 'fans',
+                    title: '粉丝数',
+                    width: 80,
+                    sort: true,
+                },{
+                    field: 'is_resume',
+                    title: '是否有简历',
+                    width: 100,
+                    sort: true,
+                },{
+                    field: 'add_time',
+                    title: '注册时间',
+                    width: 150,
+                    sort: true,
+                }, {
+                    title: '操作',
+                    width: 150,
+                    fixed: 'right',
+                    align: 'center',
+                    toolbar: '#list-bar',
+                }]
+            ],
+            url: _this_controller_url + '/ajax_list',
+            method: 'get',
+            where: {},
+            page: true,
+            limits: [10, 20, 50, 100],
+            limit: 10,
+            loading: false,
+            even: true,
+            done: function(res, curr, count) {
+
+                layer.closeAll('loading');
+            },
+        });
+    });
+    </script>
+    <script type="text/javascript" src="{$assets_url}/js/main.js">
+        layui.use('table', function(){
+            var table = layui.table;
+            //监听表格复选框选择
+            table.on('checkbox(list-table)', function(obj){
+                console.log(obj)
+            });
+            var $ = layui.$, active = {
+                getCheckData: function () { //获取选中数据
+                    var checkStatus = table.checkStatus('idTest')
+                        , data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                }
+            }
+        });
+    </script>
+</div>
+{include file="layouts/footer.html"}
+

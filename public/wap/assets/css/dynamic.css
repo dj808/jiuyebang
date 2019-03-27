@@ -1,0 +1,199 @@
+ body {
+        font-family: PingFangSC-Regular;
+        background-color: #f7f7f7;
+      }
+      * {margin: 0; padding: 0;}
+      .ov_h {
+      	overflow: hidden; text-overflow:ellipsis; white-space: nowrap;
+      }
+      .ov_h_num {display: inline-block; width: 2rem; overflow: hidden; text-overflow:ellipsis; white-space: nowrap;}
+      .fl_l {float: left;}
+      .fl_r {float: right !important;}
+      .clearfix:before,.clearfix:after {
+        content: " "; 
+        display: block;
+        clear: both;
+        }
+      .share_top {
+        padding: .5rem;
+        background-color: #ffffff;
+      }
+      .share_top .user {
+        width: 100%;
+        height: 1.5rem;
+      }
+      .user_avator {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      .user_avator img {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+      }
+      .share_top .user .user_info {
+        width: 10.1rem;
+        height: 1.5rem;
+        padding-left: .5rem;
+      }
+      .share_top .user .user_info .info_name {
+        font-size: .5rem;
+        color: #333333;
+        font-weight: bold;
+        letter-spacing: .06rem;
+      }
+      .share_top .user .user_info .info_time {
+        padding-top: .1rem;
+        font-size: .5rem;
+        color: #b3b3b3;
+      }
+      .share_top .content {
+        margin-top: .15rem;
+      }
+      .share_top .content .content_text {
+        font-size: .55rem;
+        line-height: 1rem;
+        color: #333333;
+      }
+      .share_top .content .content_topic {
+        color: #454ddd;
+      }
+      .share_top .matching {
+        margin-top: .2rem;
+      }
+      img:nth-of-type(3n+0) {
+        margin-right: 0 !important;
+      }
+      .share_top .matching img {
+        width: 4.85rem;
+        height: 4.6rem;
+        margin-right: .2rem;
+      }
+      .share_about {
+        width: auto;
+        height: 1rem;
+        margin-top: .35rem;
+        padding: .5rem;
+        background-color: #ffffff;
+      }
+      .share_about .about_left {
+        width: 70%;
+      }
+      .share_about .about_right {
+        width: 30%;
+      }
+      .about_right .right_good {
+        font-size: .55rem;
+        color: #999999;
+      }
+      .right_good_num {
+        margin-left: .2rem;
+      }
+      .share_about span {
+        float: left;
+        font-size: .55rem;
+        color: #999999;
+      }
+      .share_about .share_about_num {
+        margin-left: .2rem;
+      }
+      .share_about .comment {
+        margin-left: 10%;
+      }
+      .share_bottom {
+        margin-top: 1px;
+        padding: .5rem;
+        background-color: #ffffff;
+      }
+      .share_bottom .discuss {
+        width: 100%;
+        height: auto;
+      }
+      .share_bottom .discuss .user_avator {
+        margin-top: .4rem;
+        width: 11.5%;
+      }
+      .share_bottom .discuss .discuss_right {
+        width: 86%;
+        padding-left: .3rem;
+      }
+      .share_bottom .discuss .discuss_right .discuss_user_name {
+        display: inline-block;
+        width: 7rem;
+        font-size: .55rem;
+        color: #808080;
+      }
+      .share_bottom .discuss .discuss_right .like {
+        width: .6rem;
+        height: .6rem;
+        margin-right: .15rem;
+      }
+      .share_bottom .discuss .discuss_right .like_num {
+        font-size: .55rem;
+        color: #999999;
+      }
+      .share_bottom .discuss .discuss_right .discuss_content {
+        margin-top: .15rem;
+        font-size: .6rem;
+        color: #333333;
+      }
+      .share_bottom .discuss .discuss_right .discuss_time {
+        font-size: .5rem;
+        color: #333333;
+      }
+      .share_bottom .discuss .discuss_right .discuss_reply {
+        margin-left: .2rem;
+        font-size: .5rem;
+        color: #7375a8;
+      }
+      .share_bottom .discuss .discuss_right .author_reply {
+        padding: .5rem .3rem .5rem .55rem;
+        font-size: .5rem;
+        color: #333333;
+        background-color: #f7f7f7;
+      }
+      .download {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 7.5rem;
+        background-color: #ffffff;
+        border: solid 1px #ededed;
+      }
+      .download .download_content {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        -moz-flex-direction: column;
+        -ms-flex-direction: column;
+        -o-flex-direction: column;
+        flex-direction: column;
+        justify-content: center;
+        -ms-align-items: center;
+        align-items: center;
+      }
+      .download .download_content .download_about {
+        margin-top: 2rem;
+        margin-bottom: .7rem;
+      }
+      .download .download_content .download_logo {
+        width: 1.5rem;
+        height: 1.5rem;
+        vertical-align: middle;
+      }
+      .download .download_content .download_details {
+        margin-left: .5rem;
+        font-size: .6rem;
+        line-height: .5rem;
+        color: #333333;
+      }
+      .download .download_content .download_btn {
+        padding: .35rem 1rem;
+        background-color: #e54f2f;
+        border-radius: 10px;
+        color: #ffffff;
+      }

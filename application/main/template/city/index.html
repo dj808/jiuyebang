@@ -1,0 +1,152 @@
+<link rel="stylesheet" href="{$assets_url}/plugins/layui/css/layui.css" media="all" />
+<script type="text/javascript" src="{$assets_url}/plugins/layui/layui.js"></script>
+<literal>
+    <style>
+        .citySelect { height: 460px;overflow:auto; }
+        .citySelect .optionList { background: #FFF }
+        .citySelect .optionList .line { width: 100%; height: 36px; line-height: 36px; margin: 10px 0; padding: 0 10px; }
+        .citySelect .optionList .line:hover{ background: #F2F2F2; cursor: pointer }
+        .cityOpen { max-height: 460px;overflow:auto; }
+        .cityOpen .block { width: 210px; float: left }
+        .layui-form-checkbox[lay-skin=primary] { margin-bottom: 15px }
+
+        .citySelect .optionList .choosed{ background: #5FB878; color: #FFF }
+        .citySelect .optionList .choosed:hover{ background: #5FB878; color: #FFF }
+
+        .table-bordered{ display: none }
+    </style>
+</literal>
+
+<div id="content">
+
+    <table class="layui-table" lay-skin="row">
+        <colgroup>
+            <col width="30%">
+            <col width="70%">
+            <col>
+        </colgroup>
+        <thead>
+        <tr>
+            <th style="text-align:center;">选择省份</th>
+            <th style="text-align:center;">选择开通城市( <span style="color: red">即时保存</span> )</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>
+                <div class="citySelect">
+                    <div class="optionList">
+                        {foreach from=$provinceList item=row}
+                            <div class="line {if $row.id eq 1387} choosed {/if}" data-id="{$row.id}" >{$row.name}</div>
+                        {/foreach}
+                    </div>
+                </div>
+            </td>
+            <td valign="top">
+                <form class="layui-form" action="">
+                    <div class="cityOpen">
+                        {foreach from=$cityList item=row}
+                            <div class="block">
+                                <input type="checkbox"  title="{$row.name}" lay-skin="primary" value="{$row.id}" {if $row.is_open eq 1}checked{/if}>
+                            </div>
+                        {/foreach}
+                    </div>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+
+
+    </table>
+
+    <table class="table table-bordered" style="" id="success">
+        <tbody>
+        <tr class="success alert-success">
+            <td>保存成功</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered" style="" id="error">
+        <tbody>
+        <tr class="danger alert-danger">
+            <td>保存失败</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<script>
+    layui.use(['layer', 'form'], function(){
+        var layer = layui.layer,
+            $ = layui.jquery
+            ,form = layui.form;
+
+
+
+
+        //监听checkbox复选
+        form.on('checkbox', function(data){
+            var id = data.value;
+
+            var is_open = 2;
+            if(data.elem.checked){
+                is_open = 1;
+            }
+
+
+            $.post("/?app=city&act=setStatus", { id:id,is_open:is_open }, function(data) {
+                if (data) {
+                    //console.log(data.success);
+                    if(data.status){
+                        setTimeout(function(){ $("#success").hide(); },2000);
+                        $("#success").show();
+                    }else{
+                        setTimeout(function(){ $("#error").hide(); },2000);
+                        $("#error").show();
+                    }
+                }
+            }, 'json');
+
+        });
+
+
+        $('.line').on('click',function () {
+            $('.line').removeClass('choosed');
+            $(this).addClass('choosed');
+            var pid= $(this).attr('data-id');
+            getCityList(pid);
+        })
+
+
+        //省份选择事件
+        function getCityList(pid) {
+            $.post("/?app=city&act=select", { pid:pid }, function(result) {
+                if (result.data) {
+                    var data = result.data;
+                    var html = '';
+                    for (i in data) {
+                        if (!data[i].name) break;
+
+                        if(2==data[i].is_open){
+                            html += '<div class="block"><input type="checkbox"   title="'+data[i].name+'" lay-skin="primary" value="'+data[i].id+'"></div>';
+                        }else{
+                            html += '<div class="block"><input type="checkbox"  checked  title="'+data[i].name+'" lay-skin="primary" value="'+data[i].id+'"></div>';
+                        }
+
+                    }
+                    $('.cityOpen').html(html);
+                    form.render();
+                }
+            }, 'json');
+        }
+    });
+
+
+
+
+
+</script>

@@ -1,0 +1,147 @@
+{include file="layouts/header.html"}
+<script type="text/javascript" src="{$assets_url}/js/echarts.min.js"></script>
+<style>
+    .layui-col-md3{
+        text-align: center;
+    }
+
+    .grid-demo, {
+        padding: 10px;
+        line-height: 50px;
+        text-align: center;
+        background-color: #79C48C;
+        color: #fff;
+    }
+
+    .grid-demo a{
+        color: #fff;
+    }
+
+    .grid-demo-bg1 {
+        background-color: #63BA79;
+    }
+</style>
+
+<div class="layui-col-md12">
+    <div class="layui-card">
+        <div class="layui-card-header">用户统计</div>
+        <div class="layui-card-body">
+
+            <div class="layui-fluid">
+                <ul class="layui-row layui-col-space10">
+                    <li class="layui-col-md3 grid-demo grid-demo-bg1">
+                        <a lay-href="" >
+                            <h3>总注册人数</h3>
+                            <p><cite>{$info.user}</cite></p>
+                        </a>
+                    </li>
+                    <li class="layui-col-md3 grid-demo grid-demo-bg1">
+                        <a lay-href="" >
+                            <h3>新增/总每日分享</h3>
+                            <p><cite>{$info.news_today}/{$info.news_total}</cite></p>
+                        </a>
+                    </li>
+                    <li class="layui-col-md3 grid-demo grid-demo-bg1">
+                        <a lay-href="" >
+                            <h3>新增/总校园圈</h3>
+                            <p><cite>{$info.dynamic_today}/{$info.dynamic_total}</cite></p>
+                        </a>
+                    </li>
+                    <li class="layui-col-md3 grid-demo grid-demo-bg1">
+                        <a lay-href="" >
+                            <h3>新增/总职位</h3>
+                            <p><cite>{$info.job_today}/{$info.job_total}</cite></p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">季度统计</div>
+            <div class="layui-card-body" style="height: 400px">
+
+                <div  id="main" style="height: 400px">
+
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+
+
+            // 指定图表的配置项和数据
+            option = {
+                color:'#009688',
+                title: {
+                    left: 'center',
+                    text: '每日新增人数统计',
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    position: function (pt) {
+                        return [pt[0], '10%'];
+                    }
+                },
+                toolbox: {
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        restore: { },
+                        saveAsImage: { }
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    data: [{$list['date']}],
+                    axisLine:{
+                        lineStyle:{
+                            color:'#009688'
+                        }
+                    }
+
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLine:{
+                        lineStyle:{
+                            color:'#009688'
+                        }
+                    }
+                },
+                dataZoom: [{
+                    type: 'inside',
+                    start: 0,
+                    end: 100
+                }, {
+                    start: 0,
+                    end: 100,
+                    handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                    handleSize: '80%',
+                    handleStyle: {
+                        color: '#fff',
+                        shadowBlur: 3,
+                        shadowColor: 'rgba(0, 0, 0, 0.6)',
+                        shadowOffsetX: 2,
+                        shadowOffsetY: 2
+                    }
+                }],
+                series: [{
+                    name:'新增人数',
+                    smooth:true,
+                    data: [{$list['count']}],
+                    type: 'line'
+                }]
+            };
+
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
+
+        {include file="layouts/footer.html"}

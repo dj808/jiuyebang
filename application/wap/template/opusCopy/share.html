@@ -1,0 +1,25 @@
+{include file="./header.html"}
+
+<div class="work_intro">
+    <div class="vote_box" style="width: 72.89%; margin: 0 auto; float: none;">
+        <a href="#" class="vote_img">
+            <img src="{$info.cover}" class=""/>
+            <span>{$info.id}</span>
+        </a>
+        <div class="vote_intor">
+            <a href="javascript:void(0);" class=""><h3 class="vote_intor_h3">{$info.title}</h3></a>
+            <a href="javascript:void(0);" class=""><span class="vote_intor_span">{$info.school}</span></a>
+        </div>
+    </div>
+    <div class="work_intro_text">
+        <h3>作品介绍</h3>
+        {$info.detail}
+    </div>
+</div>
+<div class="code_box">
+    <img src="/assets/images/vote/code3.png" />
+    <span>扫描下方二维码，帮TA投票加油吧！</span>
+</div>
+
+
+{include file="./foot.html"}

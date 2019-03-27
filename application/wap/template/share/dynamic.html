@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>就业邦APP 校内圈分享</title>
+  <link rel="stylesheet" href="/assets/css/dynamic.css">
+</head>
+<body>
+<!-- 上半部分 -->
+<div class="share_top">
+    <div class="user">
+        <div class="user_avator fl_l"><img src="{$info.publish_user_avatar}" alt=""></div>
+        <div class="user_info fl_l">
+            <div class="info_name ov_h">{$info.publish_user_nickname}</div>
+            <div class="info_time">{$info.add_time}</div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="content_text">{$info.content}<span class="content_topic">{$info.topic_title}</span></div>
+    </div>
+    <div class="matching">
+        {foreach from=$info['thumbnail_list'] item=row}
+              <img src="{$row.url}" alt="">   
+        {/foreach}
+    </div>
+</div>
+<!-- 转发、评论、赞 -->
+<div class="share_about">
+    <div class="about_left fl_l">
+        <span>转发</span><span class="share_about_num ov_h_num">{$info.share_num}</span><span class="comment">评论</span><span class="share_about_num ov_h_num">{$info.comment_num}</span>
+    </div>
+    <div class="about_right fl_r">
+        <div class="right_good right_good_num ov_h_num fl_r" style="font-size: .55rem;color: #999999">{$info.praise_num}</div><div class="right_good fl_r" style="font-size: .55rem;color: #999999">赞</div>
+    </div>
+</div>
+<!-- 下半部分 -->
+{foreach from=$comments item=comment}
+<div class="share_bottom">
+    <div class="discuss clearfix">
+        <div class="user_avator fl_l"><img src="{$comment.comment_user_avatar}" alt=""></div>
+        <div class="discuss_right fl_l">
+            <div><span class="discuss_user_name ov_h">{$comment.comment_user_nickname}</span><span class="like_num ov_h_num fl_r">{$comment.comment_praise_num}</span><img class="like fl_r" src="/assets/images/dynamic/good.png" alt=""></div>
+            <div class="discuss_content">{$comment.comment_content}</div>
+        </div>
+    </div>
+</div>
+{/foreach}
+<!-- 下载APP -->
+<div class="download">
+    <div class="download_content">
+        <div class="download_about">
+            <img class="download_logo" src="/assets/images/dynamic/logo.png" alt=""><span class="download_details">立即下载就业邦APP，查看详情</span>
+        </div>
+        <a href=""><button class="download_btn">立即下载</button></a>
+    </div>      
+</div>
+<script>
+(function (doc, win) {
+    var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+    recalc = function () {
+        var clientWidth = docEl.clientWidth;
+        if (!clientWidth) return;
+        docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+    };
+
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);
+
+window.onload=function(){ 
+    var u = navigator.userAgent, app = navigator.appVersion;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+    var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    if (isAndroid) {
+       //这个是安卓操作系统
+        document.getElementById("links").href = "http://a.app.qq.com/o/simple.jsp?pkgname=sinia.com.baihangeducation&fromcase=40003";
+    }
+    if (isIOS) {
+        document.getElementById("links").href = "https://itunes.apple.com/cn/app/jiu-ye-bang/id1144030851?mt=8";
+    }
+}
+</script> 
+</body>
+</html>

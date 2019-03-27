@@ -1,0 +1,87 @@
+{include file="layouts/header.html"}
+<div style="">
+    <blockquote class="layui-elem-quote ala-search-bar">
+        <form class="layui-form layui-inline">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-sm ala-btn-search" lay-submit lay-filter="search"><i class="layui-icon">&#xe615;</i>搜索</button>
+                </div>
+            </div>
+        </form>
+        <div class="layui-inline fr">
+            <button class="layui-btn layui-btn-sm ala-btn-add" data-opt="edit" data-id="0"><i class="layui-icon">&#xe654;</i>添加</button>
+        </div>
+    </blockquote>
+    <div style="padding: 0 10px;">
+        <table id="list" lay-filter="list-table"></table>
+    </div>
+    <script type="text/html" id="list-bar">
+        <div class="layui-btn-group">
+            <button class="layui-btn layui-btn-sm" lay-event="edit" title="编辑"><i class="fa fa-pencil-square-o"></i></button>
+            <button class="layui-btn layui-btn-sm" lay-event="del" title="删除"><i class="fa fa-trash"></i></button>
+        </div>
+    </script>
+    <script>
+    layui.use(['form', 'layer', 'table'], function() {
+        var $ = layui.jquery,
+            form = layui.form,
+            layer = layui.layer,
+            table = layui.table;
+
+        layer.load();
+        table.render({
+            id: 'list',
+            elem: '#list',
+            width: 'auto',
+            height: 'full-70',
+            cols: [
+                [{
+                    field: 'id',
+                    title: 'ID',
+                    width: 100,
+                    sort: true,
+                     },
+                {
+                     width: 100,
+                     field: 'type_name',
+                     title: '类别',
+
+                }, {
+                    width: 200,
+                    field: 'is_force_name',
+                    title: '是否强制升级',
+
+                }, {
+                    width: 200,
+                    field: 'version_num',
+                    title: '版本号',
+
+                }, {
+                    width: 600,
+                    field: 'intro',
+                    title: '版本介绍',
+
+                }, {
+                    title: '操作',
+                    fixed: 'right',
+                    align: 'center',
+                    toolbar: '#list-bar',
+                }]
+            ],
+            url: _this_controller_url + '/ajax_list',
+            method: 'get',
+            where: { },
+            page: true,
+            limits: [10, 20, 50, 100],
+            limit: 10,
+            loading: false,
+            even: true,
+            done: function(res, curr, count) {
+                layer.closeAll('loading');
+            },
+        });
+    });
+    </script>
+    <script type="text/javascript" src="{$assets_url}/js/main.js"></script>
+</div>
+{include file="layouts/footer.html"}

@@ -1,0 +1,110 @@
+<div style="margin: 15px; margin-right: 30px; margin-top: 50px;">
+    <form class="layui-form record-form">
+        <input type="hidden" name="id" value="{$info['id']|default:''}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" value="{$info['title']|default:''}" lay-verify="" placeholder="请输入标题" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">学校</label>
+            <div class="layui-input-block">
+                <input type="text" name="school" value="{$info['school']|default:''}" lay-verify="" placeholder="请输入学校" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">封面图</label>
+            <div class="layui-upload-drag J-upload">
+                <if $info['cover']|default:''>
+                <img src="{$info['cover']}" lay-event="thumb" />
+                <i class="layui-icon"></i>
+                <p>请上传封面图</p>
+                </if>
+            </div>
+            <input type="hidden" name="cover" value="{$info['cover']}" />
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">详情</label>
+            <div class="layui-input-block">
+                <textarea  class=" " name="detail"   id="myEditor">{$info['detail']|default:''}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-hide">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="edit">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    var submitcount=0;
+layui.use(['form','ueditor'], function() {
+    var $ = layui.jquery,
+        form = layui.form
+    ;
+
+    //建立富文本编辑器
+    var ueditor = layui.ueditor;
+    ueditor.init({
+        elm:"myEditor",//编辑器所在元素
+        opt:null,//原始编辑器创建时带的参数
+
+        // configUrl:"./ueditor.config.js",// 采用自定义的配置文件，不用官方的配置文件
+        serverUrl: null,//  服务器统一请求接口路径，官方示例为jsp/controller.jsp，可重置此接口地址
+        // 当初始化完成时，会执行此方法，返回创建的editor编辑器实例
+        done: function (editor) {
+
+        }
+    });
+    //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(!value)
+                    return '标题不能为空';
+                if(value.length < 3){
+                    return '标题至少得3个字符啊';
+                }
+            }
+        });
+    //防止表单重复添加
+    if (submitcount == 0){
+        submitcount++;
+        return true;
+    } else{
+        layer.alert("正在操作，请不要重复提交，谢谢！");
+        return false;
+    }
+
+});
+//上传头像
+layui.use(['upload'], function() {
+    var $ = layui.jquery,
+        upload = layui.upload;
+
+    var href = _this_module_url + '/index/upload_logo';
+    upload.render({
+        elem: '.J-upload',
+        url: href,
+        done: function(res) {
+
+            if (!res.status) {
+                layer.alert(res.msg);
+                return false;
+            }
+            layer.msg(res.msg, {
+                time: 1000
+            }, function() { });
+            $('.J-upload').html('<img src="' + res.data[0] + '" lay-event="thumb" />');
+            $('form [name=cover]').val(res.data[0]);
+        },
+    });
+});
+
+</script>

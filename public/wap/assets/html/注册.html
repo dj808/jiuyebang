@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>注册</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+    <link rel="stylesheet" href="./../lib/weui.min.css">
+    <link rel="stylesheet" href="./../css/jquery-weui.css">
+    <style type="text/css">
+        body{
+            width: 100%;
+            background: url("../images/bg/bg2.png") no-repeat 0 0;
+            background-size: 100% auto;
+            display: block;
+        }
+        .head{
+            width: 100%;
+            height: 2.2rem;
+            line-height: 2.2rem;
+            text-align: center;
+            font-size: .75rem;
+            color: #ffffff;
+            border-bottom: 1px solid #e3e3e3;
+            display: block;
+        }
+        .logo{
+            margin-top: 2.1rem;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .logo img{
+            margin: 0 auto;
+            width: 4rem;
+            height: 4rem;
+            display: block;
+        }
+        .logo label{
+            width: 100%;
+            height: 1.6rem;
+            line-height: 1.6rem;
+            text-align: center;
+            font-size: .7rem;
+            color: #cccccc;
+            display: block;
+        }
+        .weui-cells{
+            position: inherit;
+            margin: 1.3rem auto 0;
+            width: 80%;
+            height: auto;
+            background: none;
+            display: block;
+        }
+        .weui-cell{
+            position: inherit;
+            margin-bottom: .8rem;
+            padding: 8px 15px;
+            background: url("../images/icon/edit4.png") no-repeat 0 0;
+            background-size: 100% 100%;
+        }
+        .weui-cell__bd input{
+            width: 70%;
+            color: #ffffff;
+            padding-left: .4rem;
+        }
+        input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+            color: #e3e3e3;
+            font-size: .68rem;
+        }
+        　　input:-moz-placeholder, textarea:-moz-placeholder {
+            color: #e3e3e3;
+            font-size: .68rem;
+        }
+        　　input::-moz-placeholder, textarea::-moz-placeholder {
+            color: #e3e3e3;
+            font-size: .68rem;
+        }
+        　　input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+            color: #e3e3e3;
+            font-size: .68rem;
+        }
+        .close,.pw_open,.pw_close{
+            float: right;
+            width: 1.1rem;
+            height: 1.2rem;
+            display: block;
+        }
+        .close{
+            background: url("../images/icon/edit1.png") no-repeat right center;
+            background-size: 1rem auto;
+        }
+        .pw_open{
+            background: url("../images/icon/edit2.png") no-repeat right center;
+            background-size: 1rem auto;
+        }
+        .pw_close{
+            background: url("../images/icon/edit3.png") no-repeat right center;
+            background-size: 1rem auto;
+        }
+        .code{
+            float: right;
+            width: 3.2rem;
+            height: 1.2rem;
+            line-height: 1.2rem;
+            text-align: center;
+            font-size: .6rem;
+            color: #ffffff;
+            border: 1px solid #e3e6e7;
+            border-radius: 20px;
+            background: none;
+            display: block;
+        }
+        .weui-btn-area{
+            margin:  1.5rem 0 0 0;
+        }
+        .weui-btn{
+            margin: 0;
+            width: 100%;
+            color: #e3e3e3;
+            background-color: #e14222;
+            border-radius: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="head">注册</div>
+    <div class="logo">
+        <img src="../images/logo2.png"/>
+        <label>就业邦 帮就业</label>
+    </div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入手机号">
+                <i class="close"></i>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" placeholder="请输入密码">
+                <i class="pw_open"></i>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" placeholder="请再次输入密码">
+                <i class="pw_close"></i>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" placeholder="请输入验证码">
+                <button type="button" class="code">验证码</button>
+            </div>
+        </div>
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">注册</a>
+        </div>
+    </div>
+
+
+
+
+<script src="./../lib/jquery-2.1.4.js"></script>
+<script src="./../lib/fastclick.js"></script>
+<script>
+    $(function() {
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="./../js/jquery-weui.js"></script>
+</body>
+</html>

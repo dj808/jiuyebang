@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>互助信息</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+    <link rel="stylesheet" href="./../lib/weui.min.css">
+    <link rel="stylesheet" href="./../css/jquery-weui.css">
+    <link rel="stylesheet" href="../css/base.css">
+</head>
+<body>
+    <div class="head">
+        <h3>互助信息</h3>
+    </div>
+    <div class="content">
+        <div class="title_box">
+            <h3>有没有收留小猫三天的！</h3>
+            <div class="being_helped clearfloat">
+                <img src="../images/chages/head1.png" alt="" title=""/>
+                <div class="being_helped_infor">
+                    <div class="name">
+                        <label>露娜</label>
+                        <span>待解决</span>
+                    </div>
+                    <div class="data">
+                        <span>南京市</span>
+                        <span>鼓楼区</span>
+                        <span>3.6km</span>
+                        <span class="ml2">30分钟前</span>
+                        <span class="ml2">浏览388次</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="require_box">
+            <div class="require clearfloat">
+                <label class="wid1">类型：</label>
+                <span class="wid2">付费</span>
+            </div>
+            <div class="require clearfloat">
+                <label class="wid1">人数：</label>
+                <span class="wid2">1人</span>
+            </div>
+            <div class="require clearfloat">
+                <label class="wid1">性别要求：</label>
+                <span class="wid2">帅哥</span>
+            </div>
+            <div class="require clearfloat">
+                <label class="wid1">状态：</label>
+                <span class="wid2">未解决</span>
+            </div>
+        </div>
+        <div class="require_box">
+            <h3>互助内容</h3>
+            <p>本人离开南京几天不在学校，希望找个愿意帮忙的帅哥拿快递，可以付费，谢谢！</p>
+        </div>
+        <div class="require_box clearfloat">
+            <div class="reward">
+                <label>悬赏</label>
+                <span>5元</span>
+            </div>
+            <a href="#" class="reward_a">申请</a>
+        </div>
+        <div class="require_box">
+            <h3>留言区</h3>
+            <div class="message_area clearfloat">
+                <img src="../images/chages/head1.png" alt="" title=""/>
+                <div class="message_box">
+                    <div class="message_name">
+                        <label>夏丽丽</label>
+                        <span>1分钟前</span>
+                    </div>
+                    <div class="message_infor">
+                        <p>怎么跟你联系？</p>
+                        <em>3条回复</em>
+                    </div>
+                </div>
+            </div>
+            <div class="message_area clearfloat">
+                <img src="../images/chages/head1.png" alt="" title=""/>
+                <div class="message_box">
+                    <div class="message_name">
+                        <label>夏丽丽</label>
+                        <span>1分钟前</span>
+                    </div>
+                    <div class="message_infor">
+                        <p>怎么跟你联系？</p>
+                        <em>3条回复</em>
+                    </div>
+                </div>
+            </div>
+            <div class="message_area clearfloat">
+                <img src="../images/chages/head1.png" alt="" title=""/>
+                <div class="message_box">
+                    <div class="message_name">
+                        <label>夏丽丽</label>
+                        <span>1分钟前</span>
+                    </div>
+                    <div class="message_infor">
+                        <p>怎么跟你联系？</p>
+                        <em>3条回复</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./../lib/jquery-2.1.4.js"></script>
+    <script src="./../lib/fastclick.js"></script>
+    <script>
+        $(function() {
+            FastClick.attach(document.body);
+        });
+    </script>
+    <script src="./../js/jquery-weui.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.require').each(function () {
+                var total_w = $(this).width();
+                var w2 = $(this).find('.wid1').width();
+                var w = total_w - w2;
+                $(this).find('.wid2').width(w);
+            })
+        });
+    </script>
+</body>
+</html>

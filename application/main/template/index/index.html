@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>{$app_name}后台管理系统</title>
+    <link rel="stylesheet" href="{$assets_url}/plugins/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="{$assets_url}/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{$assets_url}/css/index.css">
+    <script type="text/javascript" src="{$assets_url}/plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="{$assets_url}/js/common.js"></script>
+</head>
+
+<body>
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo admin-side-logo">
+                <a href="/">{$app_name}后台管理系统</a>
+            </div>
+            <div class="admin-side-toggle">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+            <div class="admin-side-full">
+                <i class="fa fa-life-bouy" aria-hidden="true"></i>
+            </div>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <!-- <a href="javascript:;">
+                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
+                    </a> -->
+                    <a href="javascript:;">
+                        <img src="{$assets_url}/img/man.png" class="layui-nav-img" />
+                        <span>{$userinfo.unick}</span>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="javascript:;" class="J-btn-changepwd"><i class="fa fa-gear" aria-hidden="true"></i> 修改密码</a>
+                        </dd>
+                        <dd>
+                            <a href="login/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll" id="admin-navbar-side" lay-filter="side"></div>
+        </div>
+        <div class="layui-body" style="bottom: 0;border-left: solid 2px #1AA094;">
+            <div class="layui-tab admin-nav-card layui-tab-brief" lay-filter="admin-tab">
+                <ul class="layui-tab-title layui-hide">
+                    <li class="layui-this">
+                        <i class="fa fa-dashboard" aria-hidden="true"></i>
+                        <cite>控制面板</cite>
+                    </li>
+                </ul>
+                <div class="layui-tab-content" style="min-height: 150px; padding: 0;">
+                    <div class="layui-tab-item layui-show">
+                        <iframe src="index/main"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="layui-footer">
+            © layui.com - 底部固定区域
+        </div> -->
+        <div class="site-tree-mobile layui-hide">
+            <i class="layui-icon">&#xe602;</i>
+        </div>
+        <div class="site-mobile-shade"></div>
+    </div>
+    <!--模板 start-->
+    <script type="text/template" id="changepwd-tpl">
+        <div style="margin: 15px;">
+            <form class="layui-form J-form-changepwd">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">原密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="oldPwd" lay-verify="required" placeholder="请输入原密码" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">新密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="newPwd" lay-verify="required|password" placeholder="请输入新密码" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">确认新密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="rePwd" lay-verify="required|password" placeholder="请再次输入新密码" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item layui-hide">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="changepwd" data-href="Index/changepwd">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </script>
+    <!--模板 end-->
+    <script>
+    layui.use(['layer', 'navbar', 'tab', 'form'], function() {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            navbar = layui.navbar();
+
+        var tab = layui.tab({
+            elem: '.admin-nav-card', //设置选项卡容器
+            // maxSetting: {
+            //     max: 5,
+            //     tipMsg: '只能开5个哇，不能再开了。真的。'
+            // },
+            contextMenu: true,
+            onSwitch: function(data) {
+                // console.log(data.id); //当前Tab的Id
+                // console.log(data.index); //得到当前Tab的所在下标
+                // console.log(data.elem); //得到当前的Tab大容器
+                // console.log(tab.getCurrentTabId())
+            },
+            closeBefore: function(obj) { //tab 关闭之前触发的事件
+                // console.log(obj);
+                //obj.title  -- 标题
+                //obj.url    -- 链接地址
+                //obj.id     -- id
+                //obj.tabId  -- lay-id
+                // if (obj.title === 'BTable') {
+                //     layer.confirm('确定要关闭' + obj.title + '吗?', {
+                //         icon: 3,
+                //         title: '系统提示'
+                //     }, function(index) {
+                //         //因为confirm是非阻塞的，所以这里关闭当前tab需要调用一下deleteTab方法
+                //         tab.deleteTab(obj.tabId);
+                //         layer.close(index);
+                //     });
+                //     //返回true会直接关闭当前tab
+                //     return false;
+                // } else if (obj.title === '表单') {
+                //     layer.confirm('未保存的数据可能会丢失哦，确定要关闭吗?', {
+                //         icon: 3,
+                //         title: '系统提示'
+                //     }, function(index) {
+                //         tab.deleteTab(obj.tabId);
+                //         layer.close(index);
+                //     });
+                //     return false;
+                // }
+                return true;
+            }
+        });
+
+        //iframe自适应
+        $(window).on('resize', function() {
+            var $content = $('.admin-nav-card .layui-tab-content');
+            // $content.height($(this).height() - 147);
+            $content.height($(this).height() - 60);
+            $content.find('iframe').each(function() {
+                $(this).height($content.height());
+            });
+        }).resize();
+
+        //设置navbar
+        navbar.set({
+            spreadOne: true,
+            elem: '#admin-navbar-side',
+            // cached: true,
+            // data: navs
+            cached: false,
+            data: false,
+            url: 'Index/ajax_menu'
+        });
+        //渲染navbar
+        navbar.render();
+        //监听点击事件
+        navbar.on('click(side)', function(data) {
+            tab.config.autoRefresh = true;
+            tab.tabAdd(data.field);
+        });
+        // //清除缓存
+        // $('#clearCached').on('click', function() {
+        //     navbar.cleanCached();
+        //     layer.alert('清除完成!', {
+        //         icon: 1,
+        //         title: '系统提示'
+        //     }, function() {
+        //         location.reload(); //刷新
+        //     });
+        // });
+        // 默认选择第一项
+        setTimeout(function() {
+            navbar.config.elem.find('a').eq(0).click();
+        }, 50);
+
+        // 隐藏左侧菜单
+        $('.admin-side-toggle').on('click', function() {
+            var sideWidth = $('.layui-side').width();
+            if (sideWidth === 200) {
+                $('.layui-body').animate({
+                    left: '0'
+                }); //admin-footer
+                $('.layui-footer').animate({
+                    left: '0'
+                });
+                $('.layui-side').animate({
+                    width: '0'
+                });
+            } else {
+                $('.layui-body').animate({
+                    left: '200px'
+                });
+                $('.layui-footer').animate({
+                    left: '200px'
+                });
+                $('.layui-side').animate({
+                    width: '200px'
+                });
+            }
+        });
+
+        // 全屏
+        $('.admin-side-full').on('click', function() {
+            var docElm = document.documentElement;
+            //W3C  
+            if (docElm.requestFullscreen) {
+                docElm.requestFullscreen();
+            }
+            //FireFox  
+            else if (docElm.mozRequestFullScreen) {
+                docElm.mozRequestFullScreen();
+            }
+            //Chrome等  
+            else if (docElm.webkitRequestFullScreen) {
+                docElm.webkitRequestFullScreen();
+            }
+            //IE11
+            else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+            layer.msg('按Esc即可退出全屏');
+        });
+
+        // 修改密码
+        $('.J-btn-changepwd').on('click', function() {
+            var index = layer.open({
+                type: 1,
+                title: '修改密码',
+                content: $('#changepwd-tpl').html(),
+                area: ['500px', 'auto'],
+                btn: ['确定', '取消'],
+                btnAlign: 'c',
+                move: false,
+                resize: false,
+                yes: function(index, layero) {
+                    //触发表单的提交事件
+                    $('form.layui-form').find('button[lay-filter=changepwd]').click();
+                },
+                success: function(layero, index) {
+                    //弹出窗口成功后渲染表单
+                    var form = layui.form;
+                    form.render();
+                    form.on('submit(changepwd)', function(data) {
+                        var newPwd = $("input[name=newPwd]").val(),
+                            rePwd = $("input[name=rePwd]").val();
+                        if (newPwd !== rePwd) {
+                            layer.msg("两次输入的密码不一致，请重新输入！", {
+                                time: 1000
+                            });
+                            return false;
+                        }
+                        $.post($(this).data('href'), data.field, function(res) {
+                            if (!res.status) {
+                                layer.alert(res.msg);
+                                return false;
+                            }
+                            layer.msg(res.msg, {
+                                time: 1000
+                            }, function() {
+                                layer.closeAll();
+                            });
+                        }, 'json');
+                        return false;
+                    });
+                },
+            });
+        });
+
+        //手机设备的简单适配
+        var treeMobile = $('.site-tree-mobile'),
+            shadeMobile = $('.site-mobile-shade');
+        treeMobile.on('click', function() {
+            $('body').addClass('site-mobile');
+        });
+        shadeMobile.on('click', function() {
+            $('body').removeClass('site-mobile');
+        });
+    });
+    </script>
+</body>
+
+</html>

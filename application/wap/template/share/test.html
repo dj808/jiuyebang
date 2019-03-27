@@ -1,0 +1,46 @@
+{if !$wechat}
+<div class="head">
+  <h3>测试调用JS</h3>
+</div>
+{/if}
+<div class="details_box">
+  <h2>测试调用APP 的js</h2>
+  <span onclick="share()">点击一下测试</span>
+  <a href="http://www.baidu.com">点击跳转</a>
+
+</div>
+
+
+<script>
+    var isMobile = {
+        Android: function () {
+            return navigator.userAgent.match(/Android/i) ? true : false;
+        },
+        iOS: function () {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
+        }
+    };
+    var handler = {
+        callHander: function (json) {
+            if (isMobile.iOS()) {
+                Jiuyebang.share(JSON.stringify(json));
+                //window.webkit.messageHandlers.control.postMessage(JSON.stringify(json))
+            }
+            if (isMobile.Android()) {
+                window.action.share(JSON.stringify(json));
+                //window.control.postMessage(JSON.stringify(json));
+            }
+        }
+    };
+
+    function share() {
+        handler.callHander({
+            'func':'share' ,
+            'share_url':'https://www.wangqs.com' ,
+            'img_url':'https://www.wangqs.com/wp-content/uploads/2018/06/js.jpg' ,
+            'title':'测试分享操作',
+            'describe':'这是描述'
+        });
+    }
+</script>
+

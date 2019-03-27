@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>网络实时投票</title>
+
+
+    <style type="text/css">
+        body {
+            width: 1600px;
+            margin: 0 auto;
+            font-weight: bold;
+            background: url(/assets/images/background.png) no-repeat fixed center ;
+        }
+        p {
+            font-family: Microsoft YaHei;
+        }
+        .tit {
+            /*margin-top: 50px;*/
+            /*text-align: center;*/
+            width: 1600px;
+            height: 190px;
+            background-image: url(/assets/images/bg.png);
+            position: relative;
+        }
+        .tit .tit_img{
+            width: 884px;
+            height: 37px;
+            margin: 0 auto;
+            padding-top: 80px;
+        }
+        .tit .tit_img img {
+
+            width: 884px;
+            height: 37px;
+        }
+        .tit .tit_jyb {
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            width: 237px;
+            height: 71px;
+        }
+        .qiansi {
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+            -webkit-flex-direction: row;
+            -moz-flex-direction: row;
+            -ms-flex-direction: row;
+            -o-flex-direction: row;
+            flex-direction: row;
+            justify-content: space-between;
+            -ms-align-items: center;
+            align-items: center;
+            margin-top: 70px;
+        }
+        .qiansi_item {
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            -moz-flex-direction: column;
+            -ms-flex-direction: column;
+            -o-flex-direction: column;
+            flex-direction: column;
+            justify-content: space-between;
+            -ms-align-items: center;
+            align-items: center;
+        }
+        .img {
+            width: 67px;
+            height: 61px;
+
+
+        }
+        .piaoshu {
+            color: #ff0e0e;
+        }
+        /*.qianshi {
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            -moz-flex-direction: column;
+            -ms-flex-direction: column;
+            -o-flex-direction: column;
+            flex-direction: column;
+            justify-content: space-between;
+            -ms-align-items: center;
+            align-items: center;
+
+            margin-top: 30px;
+        }
+        .qianshi_item {
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+            -webkit-flex-direction: row;
+            -moz-flex-direction: row;
+            -ms-flex-direction: row;
+            -o-flex-direction: row;
+            flex-direction: row;
+            justify-content: space-between;
+            -ms-align-items: center;
+            align-items: center;
+        }*/
+        .qianshi {
+            width: 1400px;
+            margin: 30px auto;
+        }
+        .qianshi p {
+            padding: 20px 0;
+        }
+        .qianshi p span {
+            float: left;
+        }
+        .qianshi_paiming {
+            display: block;
+            width: 20%;
+        }
+        .qianshi_xuexiao {
+            display: block;
+            width: 30%;
+        }
+        .qianshi_zhuanye {
+            display: block;
+            width: 30%;
+        }
+        .qianshi_piaoshu {
+            display: block;
+            width: 20%;
+            /*text-align: right;*/
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+</head>
+<body>
+<div class="tit">
+    <div class="tit_img"><img src="/assets/images/tit.png" alt=""></div>
+    <div class="tit_jyb"><img src="/assets/images/jyb.png" alt=""></div>
+</div>
+<div class="qiansi">
+    <div class="qiansi_item" id="zone1">
+        <div class="img"><img src="/assets/images/one.png" alt=""></div>
+        <div class="paiming"><h2>第一名</h2></div>
+
+        <div class="xuexiao"><p></p></div>
+        <div class="zhuanye"><p></p></div>
+        <div class="piaoshu"><h3></h3></div>
+    </div>
+    <div class="qiansi_item" id="zone2">
+        <div class="img"><img src="/assets/images/two.png" alt=""></div>
+        <div class="paiming"><h2>第二名</h2></div>
+
+        <div class="xuexiao"><p></p></div>
+        <div class="zhuanye"><p></p></div>
+        <div class="piaoshu"><h3></h3></div>
+    </div>
+    <div class="qiansi_item" id="zone3">
+        <div class="img"><img src="/assets/images/three.png" alt=""></div>
+        <div class="paiming"><h2>第三名</h2></div>
+
+        <div class="xuexiao"><p></p></div>
+        <div class="zhuanye"><p></p></div>
+        <div class="piaoshu"><h3></h3></div>
+    </div>
+    <div class="qiansi_item" id="zone4">
+        <div class="img"><img src="/assets/images/four.png" alt=""></div>
+        <div class="paiming"><h2>第四名</h2></div>
+
+        <div class="xuexiao"><p></p></div>
+        <div class="zhuanye"><p></p></div>
+        <div class="piaoshu"><h3></h3></div>
+    </div>
+</div>
+
+<div class="qianshi">
+    <p id="zone5">
+        <span class="qianshi_paiming">第五名</span>
+        <span class="qianshi_xuexiao"></span>
+        <span class="qianshi_zhuanye"></span>
+        <span class="qianshi_piaoshu piaoshu"></span>
+    </p>
+    <p id="zone6">
+        <span class="qianshi_paiming">第六名</span>
+        <span class="qianshi_xuexiao"></span>
+        <span class="qianshi_zhuanye"></span>
+        <span class="qianshi_piaoshu piaoshu"></span>
+    </p>
+    <p id="zone7">
+        <span class="qianshi_paiming">第七名</span>
+        <span class="qianshi_xuexiao"></span>
+        <span class="qianshi_zhuanye"></span>
+        <span class="qianshi_piaoshu piaoshu"></span>
+    </p>
+    <p id="zone8">
+        <span class="qianshi_paiming">第八名</span>
+        <span class="qianshi_xuexiao"></span>
+        <span class="qianshi_zhuanye"></span>
+        <span class="qianshi_piaoshu piaoshu"></span>
+    </p>
+    <p id="zone9">
+        <span class="qianshi_paiming">第九名</span>
+        <span class="qianshi_xuexiao"></span>
+        <span class="qianshi_zhuanye"></span>
+        <span class="qianshi_piaoshu piaoshu"></span>
+    </p>
+    <p id="zone10">
+        <span class="qianshi_paiming">第十名</span>
+        <span class="qianshi_xuexiao"></span>
+        <span class="qianshi_zhuanye"></span>
+        <span class="qianshi_piaoshu piaoshu"></span>
+    </p>
+</div>
+
+
+<script>
+    $(function () {
+        //直接获取数据
+        setData();
+
+        window.setInterval(function () {
+            console.log(1111);
+            setData();
+
+        },1000);
+
+    });
+
+
+
+    function setData() {
+        $.post("/?app=screen&act=getData",{ },function(res){
+
+            $.each(res, function(i,val){
+
+                var a =i*1+1;
+
+                var zone = 'zone'+a;
+
+                if(i<=3){
+
+                    var vote = val.vote_num;
+
+                    vote +='票';
+
+                    $('#'+zone+' .xuexiao p').html(val.school);
+                    $('#'+zone+' .zhuanye p').html(val.title);
+                    $('#'+zone+' .piaoshu h3').html(vote);
+
+                }else{
+                    var vote = val.vote_num;
+
+                    vote +='票';
+
+
+                    $('#'+zone+' .qianshi_xuexiao').html(val.school);
+                    $('#'+zone+' .qianshi_zhuanye').html(val.title);
+                    $('#'+zone+' .qianshi_piaoshu').html(vote);
+
+                }
+
+                //console.log(zone);
+            });
+        },'json');
+    }
+
+</script>
+
+
+</body>
+</html>

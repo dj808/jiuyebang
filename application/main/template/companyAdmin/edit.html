@@ -1,0 +1,61 @@
+<div style="margin: 15px; margin-right: 30px; margin-top: 50px;">
+    <form class="layui-form record-form">
+        <input type="hidden" name="id" value="{$info['id']|default:''}">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司名称</label>
+            <div class="layui-input-inline">
+                <select name="company_id" lay-filter="select-role" lay-verify="required">
+                    <option value="">-- 选择公司名称 --</option>
+                    {foreach from=$companyList key=key item=row}
+                    <option value="{$row.id}" {if $info.company_id eq $row.id }selected{/if}>{$row.name}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名称</label>
+            <div class="layui-input-inline">
+                <select name="user_id" lay-filter="select-role" lay-verify="required">
+                    <option value="">-- 选择用户名称 --</option>
+                    {foreach from=$userList key=key item=row}
+                    <option value="{$row.id}" {if $info.user_id eq $row.id }selected{/if}>{$row.nickname}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户类型</label>
+            <div class="layui-input-inline">
+                <select name="type" lay-filter="select-role" lay-verify="required">
+                    <option value="">-- 选择用户类型 --</option>
+                    <option value="1" {if $info.type eq "1" }selected{/if}>老板</option>
+                    <option value="2" {if $info.type eq "2" }selected{/if}>人事总监/经理</option>
+                    <option value="3" {if $info.type eq "3" }selected{/if}>部门总监/经理</option>
+                    <option value="4" {if $info.type eq "4" }selected{/if}>人事专员</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">显示名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="type_show" value="{$info['type_show']|default:''}" lay-verify="required" placeholder="请输入显示得名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-hide">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="edit">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+layui.use(['form'], function() {
+    var $ = layui.jquery,
+        form = layui.form;
+    
+});
+
+</script>

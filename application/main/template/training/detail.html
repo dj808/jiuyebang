@@ -1,0 +1,52 @@
+<style>
+    th{
+        background: rgba(62, 67, 67, 0.2);
+        width: 100px;
+        align:"center";
+    }
+</style>
+<div style="margin: 15px;margin-left: 10px; margin-right: 10px; margin-top: 25px;">
+    <table class="layui-table">
+        <input type="hidden" name="id" value="{$info['id']|default:''}">
+        <tr>
+            <th>标题</th>
+            <td colspan="5">{$info['title']|default:''}</td>
+        </tr>
+        <tr>
+            <th>副标题</th>
+            <td colspan="5">{$info['sub_title']|default:''}</td>
+        </tr>
+        <tr>
+            <th >封面图</th>
+            <td ><img src="{$info['cover']}" width="90px" height="90px"/></td>
+            <th>顶部图片</th>
+            <td><img src="{$info['top_img']}" width="90px" height="90px"/></td>
+        </tr>
+        <tr>
+            <th >地址</th>
+            <td colspan="5">{$info['city_id']|default:''}</td>
+        </tr>
+        <tr>
+            <th>价格</th>
+            <td>{$info['price']|default:''}</td>
+            <th>课时数</th>
+            <td>{$info['class_num']|default:''}</td>
+        </tr>
+        <tr>
+            <th>课时长</th>
+            <td>{$info['class_duration']|default:''} </td>
+            <th>上课时间</th>
+            <td>{$info['class_date']|default:''}</td>
+        </tr>
+        <tr>
+            <th>是否可用优惠券</th>
+            <td>{($info['is_coupon'] eq 1) ?'是':'否'}</td>
+            <th>推荐课程</th>
+            <td>{($info['is_recommend'] eq 1) ?'是':'否'}</td>
+        </tr>
+         <tr>
+             <th>课程介绍</th>
+             <td colspan="3">{$info['class_intro']|default:''}</td>
+         </tr>
+    </table>
+</div>

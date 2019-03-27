@@ -1,0 +1,45 @@
+<div style="padding: 0;">
+    <table id="list-menu"></table>
+</div>
+<script>
+layui.use(['form', 'layer', 'table'], function() {
+    var $ = layui.jquery,
+        form = layui.form,
+        layer = layui.layer,
+        table = layui.table;
+
+    layer.load();
+    table.render({
+        id: 'list-menu',
+        elem: '#list-menu',
+        width: 'auto',
+        height: 'full-0',
+        cols: [
+            [{
+                checkbox: true,
+                // fixed: 'right',
+            }, {
+                title: '菜单名称',
+                width: 300,
+                templet: function(d) {
+                    return d.name_prefix + '<i class="fa fa-fw ' + d.class + '"></i>' + d.name;
+                },
+            }],
+        ],
+        url: _this_module_url + '/AdminMenu/ajax_list',
+        method: 'get',
+        where: {
+            role_id: "{$role_id}",
+        },
+        page: false,
+        // limits: [10, 20, 50, 100],
+        // limit: 10,
+        loading: false,
+        // skin: 'line',
+        even: true,
+        done: function(res, curr, count) {
+            layer.closeAll('loading');
+        },
+    });
+});
+</script>

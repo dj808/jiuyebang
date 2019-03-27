@@ -1,0 +1,180 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>职位信息</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+    <link rel="stylesheet" href="/assets/lib/weui.min.css">
+    <link rel="stylesheet" href="/assets/css/jquery-weui.css">
+    <link rel="stylesheet" href="/assets/base.css">
+    <style type="text/css">
+        .bor_no{
+            border-bottom: none;
+        }
+        .title_box h3{
+            margin-bottom: .2rem;
+            width: 76%;
+        }
+        .price{
+            position: absolute;
+            top: 2.95rem;
+            right: 1rem;
+            width: 5rem;
+            height: 1rem;
+            text-align: right;
+            line-height: 1rem;
+            font-size: .7rem;
+            color: #e14222;
+            overflow: hidden;
+            display: block;
+        }
+        .title_infor span{
+            font-size: .7rem;
+            color: #4c4c4c;
+        }
+
+        .enterprise span{
+            float: right;
+        }
+        .require_details{
+            padding: .6rem;
+            width: auto;
+            height: auto;
+            border-bottom: 1px solid #eeeeee;
+            display: block;
+        }
+        .details:nth-child(odd){
+            float: left;
+            width: 46%;
+            border-right: 1px solid #e6e6e6;
+            display: block;
+        }
+        .details:nth-child(even){
+            float: right;
+            width: 50%;
+            display: block;
+            /*margin-right: 1.1rem;*/
+        }
+        .details label,
+        .details span,
+        .details_B label,
+        .details_B span{
+            float: left;
+            line-height: 1.1rem;
+            font-size: .7rem;
+            display: block;
+        }
+        .details label,
+        .details_B label{
+            color: #666666;
+
+        }
+        .details span,
+        .details_B span{
+            color: #333333;
+        }
+        .details_B label,
+        .details_B span{
+            padding-top: .2rem;
+        }
+    </style>
+    </head>
+<body>
+{if !$wechat}
+<div class="head">
+    <h3>职位信息</h3>
+</div>
+{/if}
+<div class="content">
+    <div class="title_box">
+        <h3>{$info.job_title}</h3>
+        <div class="title_infor">
+            <span>{$info.job_city_name}</span>
+        </div>
+        <span class="price">{$info.job_money}</span>
+        <div class="enterprise">
+            <label>浏览{$info.job_look_num}人</label>
+            <label>申请{$info.job_apply_num}人</label>
+            <span>{$info.job_time_shaft}</span>
+        </div>
+    </div>
+    <div class="require_details clearfloat">
+        <div class="details">
+            <label class="">招聘人数：</label>
+            <span class="">{$info.people_num}人</span>
+        </div>
+        <div class="details">
+            <label class="">岗位类型：</label>
+            <span class="">{$info.job_industry_name}</span>
+        </div>
+        <div class="details">
+            <label class="">性别要求：</label>
+            <span class="">{$info.job_sex_name}</span>
+        </div>
+        <div class="details">
+            <label class="">年龄限制：</label>
+            <span class="">{$info.job_age_lower_ex}-{$info.job_age_upper_ex}</span>
+        </div>
+        <div class="details">
+            <label class="">薪资类型：</label>
+            <span class="">{$info.job_money_name_ex}</span>
+        </div>
+        <div class="details">
+            <label class="">经验要求：</label>
+            <span class="">{$info.job_experience}</span>
+        </div>
+        <div class="details">
+            <label class="">是否面试：</label>
+            <span class="">{$info.job_is_interview}</span>
+        </div>
+        <div class="details">
+            <label class="">是否连做：</label>
+            <span class="">{$info.job_is_continue}</span>
+        </div>
+        <div class="details_B">
+            <label class="">上班时间：</label>
+            <span class="" style="word-wrap: break-word;">
+                    {implode(',',$info.job_time_group)}
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="require_box">
+        <h3>联系详情</h3>
+        <p>联系人：{$info.job_link_person}</p>
+        <p>联系方式：{$info.job_link_type_name}</p>
+        <p>联系号码：{$info.job_link_phone}</p>
+    </div>
+    <div class="require_box">
+        <h3>职位详情</h3>
+        {$info.job_content}
+    </div>
+    <div class="require_box bottom_no">
+        <h3>工作地点</h3>
+        <img src="/assets/images/map_01.png" title="" alt=""/>
+    </div>
+</div>
+<script src="/assets/lib/jquery-2.1.4.js"></script>
+<script src="/assets/lib/fastclick.js"></script>
+<script>
+    $(function() {
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="/assets/js/jquery-weui.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.require').each(function () {
+            var total_w = $(this).width();
+            var w2 = $(this).find('.wid1').width();
+            var w = total_w - w2;
+            $(this).find('.wid2').width(w);
+        })
+    });
+</script>
+</body>
+</html>

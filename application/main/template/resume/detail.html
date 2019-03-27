@@ -1,0 +1,74 @@
+<style>
+    th{
+        background: rgba(62, 67, 67, 0.1);
+    }
+    #show_img{
+        max-width: 150px;
+    }
+
+</style>
+<div style="margin: 15px; margin-right: 30px; margin-top: 50px;">
+    <table class="layui-table">
+        <input type="hidden" name="id" value="{$info['id']|default:''}">
+        <tr>
+            <th>昵称</th>
+            <td>{$info['user_id']|default:''}</td>
+            <th>性别</th>
+            <td>{($info['gender'] eq 1) ?'男':{($info['gender'] eq 2 )? '女':'保密'}}</td>
+        </tr>
+        <tr>
+            <th>真实姓名</th>
+            <td>{$info['name']|default:''} </td>
+            <th>手机号码</th>
+            <td>{$info['tel']|default:''}</td>
+        </tr>
+        <tr>
+            <th>生日</th>
+            <td>{$info['birthday']|default:''}</td>
+            <th>是否毕业</th>
+            <td>{($info['graduated'] eq 1) ?'是':'否'}</td>
+        </tr>
+        <tr>
+            <th>学生证图片</th>
+            <td>
+                <img src="{$info['student_photo']|default:''}" id="show_img"/>
+            </td>
+            <th>健康证图片</th>
+            <td><img src="{$info['health_photo']|default:''}" id="show_img"/></td>
+        </tr>
+        <tr>
+            <th>学生证编号</th>
+            <td>{$info['student_no']|default:''} </td>
+            <th>健康证编号</th>
+            <td>{$info['health_no']|default:''}</td>
+        </tr>
+        <tr>
+            <th>地址</th>
+            <td colspan="5">{$info['city_name']|default:''}{$info['address']|default:''}</td>
+        </tr>
+        <tr>
+            <th>教育经历</th>
+            <td colspan="5">
+                {$info['education_exp']['school_name']|default:''}
+                {$info['education_exp']['major_name']|default:''}
+                {$info['education_exp']['education_nam']|default:''}
+            </td>
+        </tr>
+        <tr>
+            <th>工作经历</th>
+            <td colspan="5">
+                {foreach from=$jobList key=key item=row}
+                    {$row['name']|default:''}
+                    {$row['job_time_name']|default:''}
+                    {$row['type_name']|default:''}
+                    {$row['note']|default:''}
+                {/foreach}
+            </td>
+        </tr>
+        <tr>
+            <th>自我评价</th>
+            <td colspan="5">{$info['evaluation']|default:''}</td>
+        </tr>
+
+    </table>
+</div>

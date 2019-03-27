@@ -1,0 +1,86 @@
+<div style="margin: 15px; margin-right: 30px; margin-top: 50px;">
+    <form class="layui-form record-form">
+        <input type="hidden" name="id" value="{$info['id']|default:0}">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" value="{$info['name']|default:''}" lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">类型</label>
+            <div class="layui-input-block">
+                <select name="type" lay-verify="required" lay-filter="type">
+                    <option value=""></option>
+                    {foreach from=$types key=key item=row}
+                        <option value="{$key}" {if $info.type eq $key }selected{/if}>{$row}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">开发标签</label>
+            <div class="layui-input-block">
+                <input type="text" name="tag" value="{$info['tag']|default:''}" lay-verify="required" placeholder="请输入开发标签" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">分组</label>
+            <div class="layui-input-block">
+                <select name="config_group_id" lay-verify="required">
+                    <option value=""></option>
+                    {foreach from=$configGroupList item=row}
+                        <option value="{$row.id}" {if $row.id eq $info.config_group_id}selected{/if}>{$row.name}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item" id="format" {if $info.type neq 4 }style="display: none" {/if}>
+            <label class="layui-form-label">格式</label>
+            <div class="layui-input-block">
+                <input type="text" name="format" value="{$info['format']|default:''}"  placeholder="请输入格式" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">排序</label>
+            <div class="layui-input-block">
+                <input type="number" name="sort" value="{$info['sort']|default:125}" lay-verify="required" placeholder="请输入排序" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item layui-hide">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="edit">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+        $ = layui.jquery;
+
+        form.on('select(type)', function(data){
+            autoSwitch(data.value);
+        });
+
+        function autoSwitch(data) {
+            if(data==4){
+                $('#format').show();
+            }else {
+                $('#format').hide();
+            }
+        }
+        
+    });
+</script>

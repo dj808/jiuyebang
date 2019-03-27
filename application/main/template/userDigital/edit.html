@@ -1,0 +1,46 @@
+<div style="margin: 15px; margin-right: 30px; margin-top: 50px;">
+    <form class="layui-form record-form">
+        <input type="hidden" name="id" value="{$info['id']|default:''}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户</label>
+            <div class="layui-input-block">
+                <input type="text" name="user_id" value="{$info['user_id']|default:''}" readonly="readonly" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">申请职位</label>
+            <div class="layui-input-block">
+                <input type="text" name="job_id" value="{$info['job_id']|default:''}" readonly="readonly" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所属企业</label>
+            <div class="layui-input-block">
+                <input type="text" name="company_id" value="{$info['company_id']|default:''}" readonly="readonly" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">申请时间</label>
+            <div class="layui-input-block">
+                <input type="text" name="add_time" value="{$info['add_time']|default:''}" readonly="readonly" placeholder="" autocomplete="off" class="layui-input" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">修改状态</label>
+            <div class="layui-input-inline">
+                <select name="status" lay-filter="select-role">
+                    <option value="">-- 选择职位标签 --</option>
+                    {foreach from=$status key=key item=row}
+                    <option value="{$key}" {if $info.status eq $key }selected{/if}>{$row}</option>
+                    {/foreach}
+
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item layui-hide">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="edit">提交</button>
+            </div>
+        </div>
+    </form>
+</div>

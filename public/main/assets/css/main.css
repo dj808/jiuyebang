@@ -1,0 +1,269 @@
+.layui-table-cell {
+    padding: 0 10px;
+}
+
+.fr {
+    float: right;
+}
+
+.ala-search-bar {
+    background-color: #f3f3f3;
+    padding: 5px;
+    padding-top: 10px;
+    border-radius: 0;
+    border-left: 0px;
+    border-bottom: 1px solid #bebebe;
+    margin-bottom: 0;
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.ala-search-bar input {
+    height: 28px;
+    line-height: 28px;
+}
+
+.ala-search-bar .ala-btn-search {
+    height: 27px;
+    line-height: 27px;
+    margin-left: 10px;
+}
+
+.ala-search-bar .ala-btn-add {
+    float: right;
+    height: 27px;
+    line-height: 27px;
+    margin-right: 30px;
+    padding: 0 10px;
+}
+
+.ala-search-bar .layui-form-item {
+    margin: 0 0 0 5px;
+    padding: 0;
+    clear: both;
+}
+
+.ala-search-bar .layui-form-item .layui-inline {
+    margin: 0 0 5px 0;
+    padding: 0;
+}
+
+.ala-search-bar .layui-form-item .layui-input-inline {
+    margin: 0;
+    padding: 0;
+}
+
+.ala-search-bar .layui-form-item .layui-form-mid {
+    padding: 0!important;
+}
+
+.ala-search-bar .ala-search-checkbox {
+    margin-left: 5px!important;
+}
+
+.ala-search-bar .ala-search-checkbox .layui-form-checkbox {
+    height: 26px;
+    line-height: 24px;
+    padding-right: 0;
+    margin-top: 0;
+    margin-right: 2px;
+}
+
+.ala-search-bar .ala-search-checkbox.checkbox-dynamic .layui-form-checkbox {
+    margin-right: 6px;
+}
+
+.ala-search-bar .layui-form-checkbox i {
+    display: none;
+}
+
+
+/*图集相关 START*/
+
+.imglist {
+    margin: 0;
+}
+
+.imglist li {
+    float: left;
+    margin: 5px 5px;
+    width: 160px;
+    position: relative;
+}
+
+.imglist li img {
+    display: block;
+    width: 100%;
+    height: 90px;
+    overflow: hidden;
+}
+
+.imglist li span {
+    display: block;
+    width: 100%;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.6);
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.imglist li a {
+    color: #fff;
+}
+
+.imglist li a:hover {
+    cursor: pointer;
+    color: #f60;
+}
+
+.imglist .drop-menu i {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.imglist .drop-menu .sign-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 20px;
+    background: #ff7800;
+    line-height: 20px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.imglist .drop-menu dl {
+    position: absolute;
+    top: 16px;
+    right: 0;
+    width: 60px;
+    background: rgba(0, 0, 0, 0.6);
+    line-height: 20px;
+    font-size: 12px;
+    text-align: center;
+    padding: 5px 0;
+    display: none;
+}
+
+.imglist .drop-menu i:hover,
+.imglist .drop-menu a:hover {
+    cursor: pointer;
+    color: #f60;
+}
+
+.imglist .drop-menu:hover dl {
+    display: block;
+}
+
+.imglist .drop-menu .select {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+}
+
+
+/*图集相关 END*/
+
+
+/*详情页相关 START*/
+
+.ala-detail-title {
+    padding: 0;
+    margin: 10px 0;
+}
+
+.ala-detail-title h1 {
+    display: inline-block;
+    font-size: 28px;
+    line-height: 30px;
+    margin: 0 20px;
+}
+
+.ala-detail-title button {
+    margin-bottom: 6px;
+}
+
+.ala-detail-photo {
+    padding: 0px 20px;
+}
+
+.ala-detail-info {
+    padding: 0;
+    margin: 20px 0;
+}
+
+.ala-detail-item {
+    margin-bottom: -10px;
+    clear: both;
+}
+
+.ala-detail-item label {
+    display: block;
+    float: left;
+    text-align: left;
+    width: 80px;
+    padding: 9px 15px;
+    font-weight: 400;
+    color: #999;
+    margin-left: 50px;
+}
+
+.ala-detail-item .ala-item-inline {
+    display: block;
+    float: left;
+    text-align: left;
+    width: 190px;
+    padding: 9px 15px;
+}
+
+.ala-detail-item .ala-item-block {
+    display: block;
+    float: left;
+    text-align: left;
+    width: 600px;
+    padding: 9px 15px;
+}
+
+.layui-upload-drag img {
+    width: 198px;
+}
+
+.layui-table .sort {
+    cursor: move;
+    padding: 10px;
+}
+
+
+/*详情页相关 END*/
+
+.layui-carousel img {
+    width: 800px;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #e4effa;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #e4effa;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #00aff0
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: #00aff0
+}

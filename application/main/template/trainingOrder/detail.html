@@ -1,0 +1,94 @@
+<style>
+    th{
+        background: rgba(62, 67, 67, 0.2);
+    }
+</style>
+<div style="margin: 15px; margin-right: 30px; margin-top: 50px;">
+    <table class="layui-table">
+        <input type="hidden" name="id" value="{$info['id']|default:''}">
+        <tr>
+            <th>订单流水号</th>
+            <td colspan="5">{$info['order_no']|default:''}</td>
+        </tr>
+        <tr>
+            <th>培训课程</th>
+            <td>{$info['training_id']|default:''}</td>
+            <th>价格</th>
+            <td>{$info['price']|default:''}</td>
+        </tr>
+        <tr>
+            <th>用户昵称</th>
+            <td>{$info['user_id']|default:''}</td>
+            <th>真实姓名</th>
+            <td>{$info['realname']|default:''} </td>
+        </tr>
+        <tr>
+            <th>联系电话</th>
+            <td>{$info['contact_tel']|default:''}</td>
+            <th>联系邮箱</th>
+            <td>{$info['email']|default:''}</td>
+        </tr>
+        <tr>
+            <th>支付类型</th>
+            <td>{($info['pay_type'] eq 1) ?'支付宝':{($info['pay_type'] eq 2 )? '微信':'优惠券全额支付'}}</td>
+            <th>支付状态</th>
+            <td>{($info['pay_status'] eq 1) ?'支付宝':{($info['pay_status'] eq 2 )? '微信':'优惠券全额支付'}}</td>
+
+        </tr>
+        <tr>
+            <th>支付时间</th>
+            <td>{$info['pay_time']|default:''}</td>
+            <th>结算价格</th>
+            <td>{$info['total_fee']|default:''}</td>
+        </tr>
+        <tr>
+            <th height="100px">留言</th>
+            <td colspan="5">{$info['message']|default:''}</td>
+        </tr>
+    </table>
+    订单详细信息
+    <table class="layui-table">
+        <tr>
+            <th>标题</th>
+            <td colspan="5">{$info['title']|default:''}</td>
+        </tr>
+        <tr>
+            <th>副标题</th>
+            <td colspan="5">{$info['sub_title']|default:''}</td>
+        </tr>
+        <tr>
+            <th>用户优惠券</th>
+            <td>{$info['user_coupon_id']|default:''}</td>
+            <th>优惠券面值</th>
+            <td>{$info['coupon_price']|default:''}</td>
+        </tr>
+        <tr>
+            <th>封面图</th>
+            <td ><img src="{$info['cover']|default:''}" /></td>
+
+            <th>顶部图片</th>
+            <td ><img src="{$info['top_img']|default:''}" /></td>
+        </tr>
+        <tr>
+            <th>地址</th>
+            <td colspan="5">{$info['city_name']|default:''}{$info['address']|default:''}</td>
+        </tr>
+        <tr>
+            <th>联系电话</th>
+            <td>{$info['tel']|default:''}</td>
+            <th>课时数</th>
+            <td >{$info['class_num']|default:''}</td>
+        </tr>
+        <tr>
+            <th>课时长</th>
+            <td >{$info['class_duration']|default:''}</td>
+            <th>上课时间</th>
+            <td >{$info['class_date']|default:''}</td>
+        </tr>
+        <tr>
+            <th height="100px">课程介绍</th>
+            <td colspan="5">{$info['class_intro']|default:''}</td>
+        </tr>
+
+    </table>
+</div>

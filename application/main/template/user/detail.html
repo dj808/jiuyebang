@@ -1,0 +1,148 @@
+<style>
+    th{
+        background: rgba(62, 67, 67, 0.1);
+        width: 120px;
+        align:"center";
+    }
+    #avatar{
+        max-width: 100px;
+    }
+    #show_img{
+        max-width: 150px;
+    }
+    #showImg{
+        max-width: 150px;
+    }
+</style>
+<div style="margin: 15px;margin-left: 15px; margin-right: 15px; margin-top: 25px;">
+    <div>基本信息</div>
+    <table class="layui-table">
+        <input type="hidden" name="id" value="{$info['id']|default:''}"/>
+        <tr>
+            <th>昵称</th>
+            <td>{$info['nickname']|default:''}</td>
+            <th>帐号类型</th>
+            <td>{($info['type'] eq 1) ?'普通用户':'入住企业'}</td>
+            <th rowspan="3">用户头像</th>
+            <td rowspan="3"><img src="{$info['avatar']|default:''}" id="avatar" /></td>
+        </tr>
+        <tr>
+            <th>手机号码</th>
+            <td>{$info['mobile']|default:''}</td>
+            <th>邮  箱</th>
+            <td>{$info['email']|default:''}</td>
+        </tr>
+        <tr>
+            <th>vip等级</th>
+            <td>{$info['vip_level']|default:''}</td>
+            <th>性别</th>
+            <td>{($info['gender'] eq 1) ?'男':{($info['gender'] eq 2 )? '女':'保密'}}</td>
+
+        </tr>
+        <tr>
+            <th>真实姓名</th>
+            <td>{$info['realname']|default:''}</td>
+            <th>身份证号码</th>
+            <td colspan="3">{$info['idcard_no']|default:''}</td>
+        </tr>
+        <tr>
+            <th>积分</th>
+            <td>{$info['integral']|default:''}</td>
+            <th>经度</th>
+            <td >{$info['lng']|default:''}</td>
+            <th >纬度</th>
+            <td >{$info['lat']|default:''}</td>
+        </tr>
+        <tr>
+            <th>成长值总计</th>
+            <td>{$info['growth']|default:''}</td>
+            <th>签到成长值</th>
+            <td>{$info['growth_sign']|default:''}</td>
+            <th>兼职成长值</th>
+            <td>{$info['growth_job']|default:''}</td>
+        </tr>
+        <tr>
+            <th>培训成长值</th>
+            <td>{$info['growth_train']|default:''}</td>
+            <th>互助成长值</th>
+            <td>{$info['growth_help']|default:''}</td>
+            <th>邀请成长值</th>
+            <td>{$info['growth_invite']|default:''}</td>
+        </tr>
+        <tr>
+            <th>个性签名</th>
+            <td colspan="5">{$info['slogan']|default:''}</td>
+        </tr>
+        <tr>
+            <th >身份证正面照片地址</th>
+            <td colspan="5"><img src="{$info['idcard_face_img']|default:''}" id="show_img" /></td>
+        </tr>
+        <tr>
+            <th >身份证反面照片地址</th>
+            <td colspan="5"><img src="{$info['idcard_opposite_img']|default:''}" id="show_img" /></td>
+        </tr>
+        <tr>
+            <th>手持身份证照片地址</th>
+            <td colspan="5"><img src="{$info['idcard_hand_img']|default:''}" id="show_img"/></td>
+        </tr>
+    </table>
+    <table class="layui-table">
+        <div>个人简历</div>
+        <input type="hidden" name="id" value="{$resumeinfo['id']|default:''}">
+        <tr>
+            <th>真实姓名</th>
+            <td>{$resumeinfo['name']|default:''} </td>
+            <th>手机号码</th>
+            <td>{$resumeinfo['tel']|default:''}</td>
+        </tr>
+        <tr>
+            <th>生日</th>
+            <td>{$resumeinfo['birthday']|default:''}</td>
+            <th>是否毕业</th>
+            <td>{($resumeinfo['graduated'] eq 1) ?'是':'否'}</td>
+        </tr>
+        <tr>
+            <th >学生证图片</th>
+            <td colspan="5"><img src="{$resumeinfo['student_photo']}" id="showImg"/></td>
+        </tr>
+        <tr>
+            <th >健康证图片</th>
+            <td colspan="5"><img src="{$resumeinfo['health_photo']}"  id="showImg" /></td>
+        </tr>
+        <tr>
+            <th>学生证编号</th>
+            <td>{$resumeinfo['student_no']|default:''} </td>
+            <th>健康证编号</th>
+            <td>{$resumeinfo['health_no']|default:''} </td>
+        </tr>
+        <tr>
+            <th>地址</th>
+            <td colspan="5">{$resumeinfo['city_name']|default:''}{$info['address']|default:''}</td>
+        </tr>
+        <tr>
+            <th>教育经历</th>
+            <td colspan="5">
+                {$resumeinfo['education_exp']['school_name']|default:''}
+                {$resumeinfo['education_exp']['major_name']|default:''}
+                {$resumeinfo['education_exp']['education_nam']|default:''}
+            </td>
+        </tr>
+        <tr>
+            <th>工作经历</th>
+            <td colspan="5">
+                {foreach from=$jobList key=key item=row}
+                {$row['name']|default:''}
+                {$row['job_time_name']|default:''}
+                {$row['type_name']|default:''}
+                {$row['note']|default:''}
+              <br>
+                {/foreach}
+            </td>
+        </tr>
+        <tr>
+            <th>自我评价</th>
+            <td colspan="5">{$resumeinfo['evaluation']|default:''}</td>
+        </tr>
+    </table>
+</div>
+

@@ -1,0 +1,210 @@
+<div style="margin: 15px; margin-right: 30px; margin-top: 50px;">
+    <form class="layui-form record-form">
+        <input type="hidden" name="id" value="{$info['id']|default:''}">
+        {if $info['user_id']}
+        <div class="layui-form-item">
+            <label class="layui-form-label">申请用户</label>
+            <div class="layui-input-block">
+                <input type="text" name="user_id" value="{$info['username']|default:''}"  placeholder="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        {else}
+        <div class="layui-form-item">
+            <label class="layui-form-label">申请的企业用户</label>
+            <div class="layui-input-inline">
+                <select name="user_id">
+                    <option value="">-- 选择企业用户 --</option>
+                    {foreach from=$userList key=key item=row}
+                    <option value="{$row.id}" {if $info.user_id eq $row.id }selected{/if}>{$row.nickname}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        {/if}
+        <div class="layui-form-item">
+            <label class="layui-form-label">企业logo</label>
+            <div class="layui-upload-drag J-upload">
+                {if $info['logo']|default:''}
+                <img src="{$info['logo']}" lay-event="thumb" /> {else}
+                <i class="layui-icon"></i>
+                <p>点击上传，或将文件拖拽到此处</p>
+                {/if}
+            </div>
+            <input type="hidden" name="logo" value="{$info['logo']}" />
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">企业名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" value="{$info['name']|default:''}" lay-verify="name" placeholder="请输入企业名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">省市区</label>
+            <div class="layui-input-block">
+                {local app=city act=select param1=$info.prov_id  param2=$info.city_id  param3=$info.dist_id }
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">地址</label>
+            <div class="layui-input-block">
+                <input type="text" name="address" value="{$info['address']|default:''}" lay-verify="address" placeholder="请输入地址" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">企业法人</label>
+            <div class="layui-input-block">
+                <input type="text" name="legal_person" value="{$info['legal_person']|default:''}" lay-verify="" placeholder="请输入企业法人" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">办公电话</label>
+            <div class="layui-input-block">
+                <input type="text" name="tel" value="{$info['tel']|default:''}" lay-verify="" placeholder="请输入办公电话" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">联系人</label>
+            <div class="layui-input-block">
+                <input type="text" name="link_person" value="{$info['link_person']|default:''}" lay-verify="" placeholder="请输入联系人" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">联系电话</label>
+            <div class="layui-input-block">
+                <input type="text" name="link_phone" value="{$info['link_phone']|default:''}" lay-verify="" placeholder="请输入联系电话" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">宣传语</label>
+            <div class="layui-input-block">
+                <input type="text" name="slogan" value="{$info['slogan']|default:''}" lay-verify="" placeholder="请输入宣传语" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">企业介绍</label>
+            <div class="layui-input-block">
+                <textarea class=" " name="content"   id="myEditor">{$info['introduce']|default:''}</textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+        <label class="layui-form-label">审核认证</label>
+        <div class="layui-input-inline">
+            <select name="status" lay-filter="real_status" >
+                <option value="">-- 选择审核认证 --</option>
+                {foreach from=$statusList key=key item=row}
+                <option value="{$row.id}" {if $info.status eq $row.id }selected{/if}>{$row.name}</option>
+                {/foreach}
+            </select>
+        </div>
+        </div>
+        <div class="layui-form-item" id="res_status">
+            <label class="layui-form-label">未通过原因</label>
+            <div class="layui-input-block" >
+                <input type="text" name="res_status"  value="{$info['res_status']|default:''}"  placeholder="请输入未通过原因" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div><br><br><br><br><br></div>
+        <div class="layui-form-item layui-hide">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="edit">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+layui.use(['upload','ueditor'], function() {
+    var $ = layui.jquery,
+        layedit = layui.layedit,
+        upload = layui.upload,
+        form=layui.form,
+        href = _this_module_url + '/Index/upload_logo';
+   //上传图片
+    upload.render({
+        elem: '.J-upload',
+        url: href,
+        done: function(res) {
+            if (!res.status) {
+                layer.alert(res.msg);
+                return false;
+            }
+            layer.msg(res.msg, {
+                time: 1000
+            }, function() {});
+            $('.J-upload').html('<img src="' + res.data[0] + '" lay-event="thumb" />');
+            $('form [name=logo]').val(res.data[0]);
+        },
+    });
+    //板块监听
+    form.on('select(real_status)', function(data){
+        var type = data.value;
+        change(type);
+    });
+
+    function change(type) {
+        if(3==type){
+            $('#res_status').show();
+        }else{
+            $('#res_status').hide();
+        }
+    }
+   //富文本
+    var ueditor = layui.ueditor;
+    ueditor.init({
+        elm:"myEditor",//编辑器所在元素
+        opt:null,//原始编辑器创建时带的参数
+
+        // configUrl:"./ueditor.config.js",// 采用自定义的配置文件，不用官方的配置文件
+        serverUrl: null,//  服务器统一请求接口路径，官方示例为jsp/controller.jsp，可重置此接口地址
+        // 当初始化完成时，会执行此方法，返回创建的editor编辑器实例
+        done: function (editor) {
+
+        }
+    });
+//自定义验证规则
+    /* form.verify({
+            title: function(value){
+             if(value.length < 3){
+                 return '标题至少得3个字符啊';
+             }
+           }, price: function(value){
+             if(value.length < 1){
+                 return '价格至少1个字符';
+             }
+           },
+         class_num: function(value){
+             if(value.length < 1){
+                 return '课时数请输入至少1个字符';
+             }
+           },
+         class_duration: function(value){
+             if(value.length < 1){
+                 return '课时长下限不能为0';
+             }
+           },
+         class_date: function(value){
+              if(value.length > 100){
+                 return '人数下限不能超过100';
+             }
+           },
+         class_intro: function(value){
+             if(value.length < 1){
+                 return '薪水下限不能低于1';
+             }
+         },
+         money_upper: function(value){
+             if(value.length > 100000){
+                 return '薪水上限不能超过100000';
+             }
+         },
+         link_phone: [
+             /(^$)|(^1\d{10}$)/
+             ,'请输入正确的手机号'
+         ]
+     });*/
+
+
+});
+</script>

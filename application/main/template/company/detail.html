@@ -1,0 +1,60 @@
+<style>
+    th{
+        background: rgba(62, 67, 67, 0.1);
+        width: 100px;
+        align:"center";
+    }
+</style>
+<div style="margin: 15px;margin-left: 50px; margin-right: 50px; margin-top: 30px;">
+    <table class="layui-table">
+        <input type="hidden" name="id" value="{$info['id']|default:''}">
+        <tr>
+            <th>公司名称</th>
+            <td>{$info['name']|default:''}</td>
+            <th rowspan="3">公司企业LOGO</th>
+            <td rowspan="3"><img src="{$info['logo']|default:''}"/></td>
+        </tr>
+        <tr>
+            <th>公司类型</th>
+            <td>{($info['type'] eq 1) ?'企业':'培训机构'}</td>
+
+        </tr>
+        <tr>
+            <th>企业法人</th>
+            <td>{$info['legal_person']|default:''}</td>
+
+        </tr>
+        <tr>
+            <th>公司电话</th>
+            <td>{$info['tel']|default:''}</td>
+            <th>认证状态</th>
+            <td>{($info['status'] eq 1) ?'认证通过':{($info['status'] eq 2 )? '未认证':'认证未通过'}}</td>
+        </tr>
+        <tr>
+            <th>联系人</th>
+            <td>{$info['link_person']|default:''}</td>
+            <th>联系电话</th>
+            <td >{$info['link_phone']|default:''}</td>
+        </tr>
+        <tr>
+            <th>公司地址</th>
+            <td colspan="5">{$info['city_name']|default:''}{$info['address']|default:''}</td>
+        </tr>
+        <tr>
+            <th>宣传语</th>
+            <td colspan="5">{$info['slogan']|default:''}</td>
+        </tr>
+        <tr>
+            <th>营业执照</th>
+            <td colspan="5"><img src="{$info['business_license']|default:''}"/></td>
+        </tr>
+        <tr>
+            <th >公司介绍</th>
+            <td colspan="5" >{$info['introduce']|default:''}</td>
+        </tr>
+
+    </table>
+    <script>
+
+    </script>
+</div>

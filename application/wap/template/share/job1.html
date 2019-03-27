@@ -1,0 +1,104 @@
+<style type="text/css">
+  .bor_no{
+    border-bottom: none;
+  }
+  .title_box h3{
+    margin-bottom: 0;
+  }
+  .price{
+    position: absolute;
+    top: 4.5rem;
+    right: 1rem;
+    width: 5rem;
+    height: 1rem;
+    text-align: right;
+    line-height: 1rem;
+    font-size: .7rem;
+    color: #e14222;
+    overflow: hidden;
+    display: block;
+  }
+</style>
+
+{if !$wechat}
+<div class="head">
+  <h3>猎头职位信息</h3>
+</div>
+{/if}
+<div class="content">
+    <div class="title_box">
+        <h3>{$info.job_title}</h3>
+        <div class="title_infor">
+            <span>{$info.job_city_name}</span>
+            <span>{$info.job_add_date}</span>
+        </div>
+        <span class="price">{$info.job_money}</span>
+        <div class="enterprise">
+            <label>发布企业：</label>
+            <span>{$info.job_company_name}</span>
+            <em>{$info.job_company_status_name}</em>
+        </div>
+        <span class="enterprise_intor">现在入住就业邦高新人才随心招！</span>
+    </div>
+
+    <div class="require_box">
+        <h3>企业信息</h3>
+        <div class="enterprise_infor clearfloat">
+            <img src="{$info.job_company_log}" alt="" title=""/>
+            <div class="company">
+                <label>{$info.job_company_name}</label>
+                <span>公司地址：{$info.job_company_address}</span>
+                <em>联系电话：{$info.job_company_tel}</em>
+            </div>
+        </div>
+        <div class="welfare clearfloat">
+            {foreach from=$info.job_tag_list key=key item=row}
+                <span>{$row.tag_name}</span>
+            {/foreach}
+        </div>
+    </div>
+
+    <div class="require_box">
+        <div class="require clearfloat">
+            <label class="wid1">工作日期：</label>
+            <span class="wid2">{$info.job_work_date}</span>
+        </div>
+        <div class="require clearfloat">
+            <label class="wid1">上班时段：</label>
+            <span class="wid2">{$info.job_work_time}</span>
+        </div>
+    </div>
+    <div class="require_box">
+        <h3>工作内容</h3>
+        {$info.job_content}
+    </div>
+    <div class="require_box">
+        <div class="require clearfloat">
+            <label class="wid1">详细地址：</label>
+            <span class="wid2">{$info.job_address}</span>
+        </div>
+        <div class="require clearfloat">
+            <label class="wid1">联系电话：</label>
+            <span class="wid2">{$info.job_link_phone}</span>
+        </div>
+        <div class="require clearfloat">
+            <label class="wid1">联系人：</label>
+            <span class="wid2">{$info.job_link_person}</span>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    $(document).ready(function(){
+        $('.require').each(function () {
+            var total_w = $(this).width();
+            var w2 = $(this).find('.wid1').width();
+            var w = total_w - w2;
+            $(this).find('.wid2').width(w);
+        })
+    });
+</script>
+
+

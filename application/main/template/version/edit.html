@@ -1,0 +1,66 @@
+<div style="margin: 15px; margin-right: 30px; margin-top: 50px;">
+    <form class="layui-form record-form">
+        <input type="hidden" name="id" value="{$info['id']|default:''}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">类别</label>
+            <div class="layui-input-block">
+                <input type="radio" name="type" value="1" title="IOS" {if $info['type']|default:'' eq 1}checked{/if}>
+                <input type="radio" name="type" value="2" title="Android" {if $info['type']|default:'' eq 2}checked{/if}>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">版本号</label>
+            <div class="layui-input-block">
+                <input type="text" name="version_num" value="{$info['version_num']|default:''}" lay-verify="required" placeholder="请输入版本号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">需要更新的版本号</label>
+            <div class="layui-input-block">
+                <input type="text" name="update_version" value="{$info['update_version']|default:''}"  placeholder="需要更新的老版本号，为空表示全部更新" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否更新</label>
+            <div class="layui-input-block">
+                <input type="radio" name="is_update" value="1" title="是" {if $info['is_update']|default:'' eq 1}checked{/if}>
+                <input type="radio" name="is_update" value="2" title="否" {if $info['is_update']|default:'' eq 2}checked{/if}>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否强制更新</label>
+            <div class="layui-input-block">
+                <input type="radio" name="is_force" value="1" title="是" {if $info['is_force']|default:'' eq 1}checked{/if}>
+                <input type="radio" name="is_force" value="2" title="否" {if $info['is_force']|default:'' eq 2}checked{/if}>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">提醒时间</label>
+            <div class="layui-input-block">
+                <input type="number" name="time_interval" value="{$info['time_interval']|default:60}"  placeholder="更新提醒时间间隔 单位为秒" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">下载地址</label>
+            <div class="layui-input-block">
+                <input type="text" name="download" value="{$info['download']|default:''}"  placeholder="填写二合一的应用宝下载地址" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">版本描述</label>
+            <div class="layui-input-block">
+                <textarea name="intro" placeholder="请输入版本介绍" class="layui-textarea">{$info['intro']|default:''}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-hide">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="edit">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>

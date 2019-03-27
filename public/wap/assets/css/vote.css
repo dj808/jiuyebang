@@ -1,0 +1,514 @@
+body{
+    background-color: #ffffff;
+}
+.clearfloat:after{content:'';display:block;clear:both;height:0;overflow:hidden;visibility:hidden;}
+.clearfloat{zoom:1;}
+
+.top_img{
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.data_box{
+    padding: .55rem 0;
+    width: 100%;
+    height: auto;
+    background-color: #e83f46;
+}
+.data_box .data{
+    float: left;
+    width: 33%;
+    height: auto;
+    border-right: 1px solid #f5f5f5;
+    display: block;
+}
+.data_box .data:last-child{
+    border-right: none;
+}
+.data_box .data label{
+    padding-bottom: .1rem;
+    width: 100%;
+    height: .8rem;
+    line-height: .8rem;
+    text-align: center;
+    color: #ffffff;
+    font-size: .7rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.data_box .data span{
+    width: 100%;
+    height: .8rem;
+    line-height: .8rem;
+    text-align: center;
+    color: #ffffff;
+    font-size: .7rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+
+.intro_box{
+    margin: .8rem .5rem .9rem;
+    padding: .5rem;
+    width: auto;
+    height: auto;
+    box-shadow: 0 0 10px #999999;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    display: block;
+}
+.intro_box p{
+    margin-bottom: .2rem;
+    width: 100%;
+    line-height: 1rem;
+    font-size: .7rem;
+    color: #999999;
+    display: block;
+}
+.intro_box span{
+    width: 100%;
+    line-height: 1rem;
+    font-size: .7rem;
+    color: #d11d24;
+    display: block;
+}
+
+.search_box{
+    margin: 0 .5rem;
+    width: auto;
+    height: auto;
+    display: block;
+}
+.search_box input{
+    float: left;
+    width: 75%;
+    height: 1.5rem;
+    text-indent: 1em;
+    font-size: .7rem;
+    background-color: #FFFFFF;
+    border: 1px solid #f5f5f5;
+    box-shadow: 2px 2px 10px #999999;
+    border-radius: 6px;
+    display: block;
+}
+.search_box button{
+    float: right;
+    width: 20%;
+    height: 1.5rem;
+    line-height: 1.4rem;
+    text-align: center;
+    font-size: .7rem;
+    color: #FFFFFF;
+    background-color: #d11d24;
+    border: 1px solid #d11d24;
+    border-radius: 6px;
+    display: block;
+}
+
+.list_box{
+    margin: 1rem .5rem;
+    width:auto;
+    height: auto;
+    display: block;
+}
+.vote_box{
+    width: 48.8%;
+    height: auto;
+    display: block;
+}
+.vote_box:nth-child(odd){
+    float: left;
+}
+.vote_box:nth-child(even){
+    float: right;
+}
+.vote_box .vote_img{
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 6.5rem;
+    overflow: hidden;
+    background-color: #b7b7b7;
+    display: block;
+}
+.vote_box .vote_img img{
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    display: block;
+}
+.vote_box .vote_img span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    min-width: 1.8rem;
+    max-width: 2.8rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    text-align: center;
+    font-size: .7rem;
+    color: #FFFFFF;
+    border-top-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background-color: #e60012;
+    overflow: hidden;
+    display: block;
+}
+.vote_box .vote_intor{
+    margin-bottom: .5rem;
+    padding-bottom: .15rem;
+    width: 100%;
+    height: auto;
+    background-color: #e83f46;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    display: block;
+}
+.vote_box .vote_intor .vote_intor_h3{
+    padding: .4rem .5rem 0.1rem;
+    width: auto;
+    height: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    font-size:.74rem;
+    font-weight: 400;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.vote_box .vote_intor .vote_intor_span{
+    padding: 0 .2rem;
+    width: auto;
+    height: .9rem;
+    line-height: .9rem;
+    text-align: center;
+    font-size:.62rem;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.vote_box .vote_intor .vote_intor_button{
+    margin: .25rem auto 0;
+    padding: 0 .6rem;
+    width: auto;
+    height: .9rem;
+    line-height: .9rem;
+    text-align: center;
+    font-size: .6rem;
+    color: #e83f46;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    display: block;
+
+}
+.vote_box .vote_intor .operation{
+    padding: 0 .3rem;
+    width: auto;
+    height: .9rem;
+    display: block;
+}
+.list_box .vote_box .vote_intor .operation span{
+    max-width: 35%;
+    height: .9rem;
+    line-height: 1rem;
+    font-size: .65rem;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.vote_box .vote_intor .operation span:nth-child(1){
+    float: left;
+    padding-left: 18px;
+    background: url("../images/vote/see_01.png") no-repeat left center;
+    background-size: 15px auto;
+}
+.vote_box .vote_intor .operation span:nth-child(2){
+    float: right;
+    text-align: right;
+    padding-left: 18px;
+    background: url("../images/vote/fabulous_01.png") no-repeat 0 center;
+    background-size: 16px auto;
+}
+
+/*作品详情*/
+.work_intro{
+    margin: 1rem auto .5rem;
+    padding: .6rem 0;
+    width: 90%;
+    height: auto;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px #999999;
+    border-radius: 6px;
+    display: block;
+}
+.work_intro .vote_box .vote_img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    display: block;
+}
+
+.work_intro .vote_intor{
+    padding-bottom: .35rem;
+}
+.work_intro_text{
+    margin: .6rem 0 .2rem;
+    padding: 0 .7rem;
+    width: auto;
+    height: auto;
+    display: block;
+}
+.work_intro_text img,
+.work_intro_text image{
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.work_intro_text h3{
+    margin-bottom: .1rem;
+    width: 100%;
+    height: auto;
+    line-height: 1.2rem;
+    text-align: center;
+    font-size: .78rem;
+    font-weight: 400;
+    color: #e83f46;
+    text-decoration: underline;
+    display: block;
+}
+.work_intro_text p{
+    width: 100%;
+    height: auto;
+    line-height: 1rem;
+    font-size: .71rem;
+    color: #808080;
+    display: block;
+}
+.ballot{
+    margin: 0 auto .5rem;
+    padding-left: 1.2rem;
+    width: auto;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    text-align: center;
+    font-size: .72rem;
+    color: #e83f46;
+   /* background: url("../images/vote/fabulous_02.png") no-repeat 0 center;
+    background-size: .9rem auto;*/
+    display: block;
+}
+.ballot img{
+    margin-top: .2715rem;
+    width: .9rem;
+    height: .657rem;
+    display: inline-block;
+}
+.btn_box{
+    margin: 0 1.7rem 1.2rem;
+    width: auto;
+    height: auto;
+    display: block;
+}
+.btn_box button:first-child{
+    float: left;
+}
+.btn_box button:last-child{
+    float: right;
+}
+.btn_box button{
+    width: 44%;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    text-align: center;
+    font-size: .74rem;
+    color: #FFFFFF;
+    border: 1px solid #e83f46;
+    background-color: #e83f46;
+    border-radius: 6px;
+    display: block;
+}
+
+/*分享链接*/
+.code_box{
+    padding: .6rem .5rem 1.5rem;
+    width: auto;
+    display: block;
+}
+.code_box img{
+    margin: 0 auto .5rem;
+    width: 7rem;
+    height: 7rem;
+    display: block;
+}
+.code_box span{
+    width: 100%;
+    height: auto;
+    line-height: 1rem;
+    text-align: center;
+    font-size: .75rem;
+    color: #333333;
+    display: block;
+}
+
+/*投票成功*/
+.result_box{
+    margin: 1.1rem .5rem 0;
+    padding-bottom: .4rem;
+    width: auto;
+    border-bottom: 1px solid #f3f3f3;
+    display: block;
+}
+.result_box img{
+    margin: 0 auto;
+    width: 2.2rem;
+    height: auto;
+    display: block;
+}
+.result_box h2{
+    margin: .25rem 0;
+    width: 100%;
+    line-height: 1.2rem;
+    text-align: center;
+    font-size: .78rem;
+    font-weight: 400;
+    color: #e83f46;
+    display: block;
+}
+.result_box span{
+    width: 100%;
+    line-height: 1rem;
+    text-align: center;
+    font-size: .72rem;
+    color: #808080;
+    display: block;
+}
+.show_list{
+    padding: .8rem .5rem .5rem;
+    width: auto;
+    height: auto;
+    display: block;
+}
+.show_list .show_project{
+    margin-bottom: .65rem;
+    width: 100%;
+    height: 3rem;
+    display: block;
+}
+.show_project_img{
+    position: relative;
+    margin-right: .5rem;
+    float: left;
+    width: 3rem;
+    height: 3rem;
+    display: block;
+}
+.show_project_img img{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 6px;
+    display: block;
+}
+.show_project_img span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    min-width: 1rem;
+    max-width: 2.4rem;
+    height: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    font-size: .6rem;
+    color: #FFFFFF;
+    background-color: #e60012;
+    border-top-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    display: block;
+}
+.show_project_intro{
+    float: left;
+    width: 55%;
+    height: auto;
+    display: block;
+}
+.show_project_intro label{
+    margin-bottom: .1rem;
+    padding-top: .1rem;
+    width: 100%;
+    height: 1.1rem;
+    line-height: 1.1rem;
+    font-size: .7rem;
+    color: #333333;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.show_project_intro span{
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: .66rem;
+    color: #333333;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.show_project_number{
+    margin-top: .6rem;
+    float: right;
+    width: 18%;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    font-size: .68rem;
+    color: #ffffff;
+    border-radius: 6px;
+    background-color: #e83f46;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

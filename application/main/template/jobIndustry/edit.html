@@ -1,0 +1,74 @@
+<div style="margin: 15px; margin-right: 30px; margin-top: 50px;">
+    <form class="layui-form record-form">
+        <input type="hidden" name="id" value="{$info['id']|default:''}">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">专业名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" value="{$info['name']|default:''}" lay-verify="required" placeholder="请输入类型名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">icon图标</label>
+            <div class="layui-upload-drag J-upload">
+                <if $info['icon']|default:''>
+                <img src="{$info['icon']}" lay-event="thumb" />
+                <i class="layui-icon"></i>
+                <p>请上传icon图标</p>
+                </if>
+            </div>
+            <input type="hidden" name="icon" value="{$info['icon']}" />
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否app首页展示</label>
+            <div class="layui-input-block">
+                <input type="radio" name="is_index" value="1" title="显示" {if $info['is_index'] eq 1 }checked='checked'{/if}>
+                <input type="radio" name="is_index" value="0" title="不显示" {if $info['is_index'] eq 0 }checked='checked'{/if}>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">排序</label>
+            <div class="layui-input-block">
+                <input type="text" name="sort" value="{$info['sort']|default:''}" lay-verify="required"  autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-hide">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="edit">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+layui.use(['form'], function() {
+    var $ = layui.jquery,
+        form = layui.form;
+
+});
+//上传头像
+layui.use(['upload'], function() {
+    var $ = layui.jquery,
+        upload = layui.upload;
+
+    var href = _this_module_url + '/Index/upload_logo';
+    upload.render({
+        elem: '.J-upload',
+        url: href,
+        done: function(res) {
+
+            if (!res.status) {
+                layer.alert(res.msg);
+                return false;
+            }
+            layer.msg(res.msg, {
+                time: 1000
+            }, function() {
+                $('.J-upload').html('<img src="' + res.data[0] + '" lay-event="thumb" />');
+                $('form [name=icon]').val(res.data[0]);
+            });
+
+        }
+    });
+});
+</script>

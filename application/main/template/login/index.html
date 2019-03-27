@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>登录 - {$app_name}后台管理系统</title>
+    <link rel="stylesheet" href="{$assets_url}/plugins/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="{$assets_url}/css/login.css" />
+    <script type="text/javascript" src="{$assets_url}/plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="{$assets_url}/js/common.js"></script>
+</head>
+
+<body class="beg-login-bg" style="background-size: cover;">
+    <div class="beg-login-logo">{$app_name}后台管理系统</div>
+    <div class="beg-login-box">
+        <header>
+            <h1>登 录</h1>
+        </header>
+        <div class="beg-login-main">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <label class="beg-login-icon">
+                        <i class="layui-icon">&#xe612;</i>
+                    </label>
+                    <input type="text" name="username" id="username" lay-verify="required|username" autocomplete="off" placeholder="用户名" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <label class="beg-login-icon">
+                        <i class="layui-icon">&#xe642;</i>
+                    </label>
+                    <input type="password" name="password" id="pwd" lay-verify="required" autocomplete="off" placeholder="密码" class="layui-input">
+                </div>
+                <div class="layui-form-item verify">
+                    <label class="beg-login-icon">
+                        <i class="layui-icon">&#xe6b2;</i>
+                    </label>
+                    <input type="text" name="verify" id="yz" lay-verify="required" autocomplete="off" placeholder="验证码" class="layui-input">
+                    <img title="点击刷新" src="login/ajax_verify" onclick="this.src = this.src">
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn" lay-submit lay-filter="login" data-href="login/login" id="login">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+    layui.use(['layer', 'form'], function() {
+        var $ = layui.jquery,
+            // layer = undefined === parent.layer ? layui.layer : parent.layer,
+            layer = layui.layer,
+            form = layui.form;
+
+        form.on('submit(login)', function(data) {
+            $.post($(this).data('href'), data.field, function(res) {
+                if (!res.status) {
+                    layer.alert(res.msg);
+                    var verify = $('.verify img');
+                    verify.attr('src', verify.attr('src')); //刷新验证码
+                    return false;
+                }
+                layer.msg(res.msg, {
+                    time: 1000
+                }, function() {
+                    // layer.closeAll();
+                    location.href = '/';
+                });
+            }, 'json');
+            return false;
+
+        });
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<div style="margin: 15px; margin-right: 30px; margin-top: 50px;">
+    <form class="layui-form record-form">
+        <input type="hidden" name="id" value="{$info['id']|default:''}">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">专业名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" value="{$info['name']|default:''}" lay-verify="required" placeholder="请输入专业名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所属类别</label>
+            <div class="layui-input-inline">
+                <select name="pid">
+                    <option value="">-- 选择上级菜单 --</option>
+                    {foreach $top_menu as $key => $value}
+                    <option value="{$value['id']}" {if $value[ 'id'] eq $info[ 'pid']|default: ''}selected="selected" {/if}>{$value['name']}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item layui-hide">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="edit">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+layui.use(['form'], function() {
+    var $ = layui.jquery,
+        form = layui.form;
+
+});
+</script>

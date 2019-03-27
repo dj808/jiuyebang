@@ -1,0 +1,90 @@
+<div class="layui-input-inline citySelectZone" style="width: 100px;" >
+    <select name="province_id" id="province_id" lay-filter="province_id">
+        <option value="0"> 选择省份</option>
+        {foreach from=$provinceList item=row}
+            <option value="{$row.id}" {if $row.id eq $provinceId}selected{/if}>{$row.name}</option>
+        {/foreach}
+    </select>
+</div>
+
+<div class="layui-input-inline" style="width: 100px;">
+    <select name="city_id" id="city_id" lay-filter="city_id">
+        <option value="0"  > 选择城市 </option>
+        {foreach from=$cityList item=row}
+            <option value="{$row.id}" {if $row.id eq $cityId}selected{/if}>{$row.name}</option>
+        {/foreach}
+    </select>
+</div>
+{if !$noDistrict}
+<div class="layui-input-inline" style="width: 100px;">
+    <select name="district_id" id="district_id" lay-filter="district_id">
+        <option value="0"  > 选择区/县</option>
+        {foreach from=$districtList item=row}
+            <option value="{$row.id}" {if $row.id eq $districtId}selected{/if}>{$row.name}</option>
+        {/foreach}
+    </select>
+</div>
+{/if}
+
+<script>
+
+    layui.use(['form', 'layer'], function(){
+
+        var $ = layui.jquery,
+
+            form = layui.form,
+            layer = layui.layer;
+
+        var _tag = layer.index;
+
+            form.on('select(province_id)', function(data){
+                var pid = data.value;
+
+                if(pid != 0) { //获取二数据
+                    var secondJosn = { 'pid':pid };
+                    $.post("/?app=city&act=select", secondJosn, function(data) {
+                        if(data.data) {
+                            var secondHtml = '';
+                            $.each(data.data, function(index, value) {
+                                //console.log(value.id + ':' + value.name);
+                                secondHtml += "<option value='"+value.id+"'>"+value.name+"</option>";
+                            });
+                            $(" #city_id option:gt(0)").remove();
+                            $("#city_id option:first").after(secondHtml);
+                        }
+                        form.render();
+                    }, "json");
+                } else {
+                    $( "#city_id option:gt(0)").remove();
+                    form.render();
+                }
+            });
+
+             form.on('select(city_id)', function(data){
+                            var pid = data.value;
+
+                            if(pid != 0) { //获取二数据
+                                var secondJosn = { 'pid':pid };
+                                $.post("/?app=city&act=select", secondJosn, function(data) {
+                                    if(data.data) {
+                                        var secondHtml = '';
+                                        $.each(data.data, function(index, value) {
+                                            //console.log(value.id + ':' + value.name);
+                                            secondHtml += "<option value='"+value.id+"'>"+value.name+"</option>";
+                                        });
+                                        $("#district_id option:gt(0)").remove();
+                                        $("#district_id option:first").after(secondHtml);
+                                    }
+                                    form.render();
+                                }, "json");
+                            } else {
+                                $("#district_id option:gt(0)").remove();
+                                form.render();
+                            }
+                        });
+
+
+    });
+
+
+</script>

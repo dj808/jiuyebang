@@ -1,0 +1,118 @@
+<style>
+label {
+    font-weight: 100
+}
+
+.access-list .layui-form input[type=checkbox] {
+    display: inline-table;
+}
+
+.access-list {
+    padding: 20px;
+    width: 580px;
+}
+
+.access-list .item,
+.access-list dl {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.access-list dd {
+    float: left;
+    margin-left: 10px;
+}
+</style>
+<div class="access-list">
+    <label>
+        <input type="checkbox" class="J-check-all"> 全选
+    </label>
+    <form class="layui-form">
+        {foreach $data as $controller => $action_list}
+        <div class="item">
+            <label>
+                <input type="checkbox" class="J-check-all-sub" />
+                <span>{$controller}</span>
+            </label>
+            <dl>
+                {foreach $action_list as $action}
+                <dd>
+                    <label>
+                        <input type="checkbox" name="access[]" class="J-sub" value="{$controller}/{$action}" {if $controller|cat: '/'|cat:$action|in_array:$access_list}checked{/if} />
+                        <span>{$action}</span>
+                    </label>
+                </dd>
+                {/foreach}
+                <div class="layui-clear"></div>
+            </dl>
+            <div class="layui-clear"></div>
+        </div>
+        {/foreach}
+    </form>
+</div>
+<script>
+layui.use(['form'], function() {
+    var $ = layui.jquery,
+        form = layui.form;
+
+    $('.J-check-all').click(function() {
+        var _this = $(this);
+        if (_this.prop('checked')) {
+            $('.access-list input[type="checkbox"]').prop('checked', true);
+        } else {
+            $('.access-list input[type="checkbox"]').prop('checked', false);
+        }
+    });
+
+    $('.J-check-all-sub').click(function() {
+        var _this = $(this);
+        if (_this.prop('checked')) {
+            _this.parent().next().find('input[type="checkbox"]').prop('checked', true);
+            if (isAllChecked($('form'))) {
+                $('.J-check-all').prop('checked', true);
+            }
+        } else {
+            _this.parent().next().find('input[type="checkbox"]').prop('checked', false);
+            $('.J-check-all').prop('checked', false);
+        }
+    });
+
+    $('.J-sub').click(function() {
+        var _this = $(this);
+        var p = _this.parents('dl');
+        if (_this.prop('checked')) {
+            if (isAllChecked(p)) {
+                p.prev().find('input[type="checkbox"]').prop('checked', true);
+            }
+            if (isAllChecked($('form'))) {
+                $('.J-check-all').prop('checked', true);
+            }
+        } else {
+            p.prev().find('input[type="checkbox"]').prop('checked', false);
+            $('.J-check-all').prop('checked', false);
+        }
+    });
+
+    $('.item').each(function() {
+        var _this = $(this);
+        if (isAllChecked(_this.find('dl'))) {
+            _this.find('.J-check-all-sub').prop('checked', true);
+        }
+    });
+
+    if (isAllChecked($('form'))) {
+        $('.J-check-all').prop('checked', true);
+    }
+
+    function isAllChecked(obj) {
+        var r = true;
+        obj.find('input[type="checkbox"]').each(function() {
+            var _this = $(this);
+            if (!_this.prop('checked')) {
+                r = false;
+            }
+        });
+        return r;
+    }
+});
+</script>

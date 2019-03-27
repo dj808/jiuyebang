@@ -1,0 +1,248 @@
+{include file="layouts/header.html"}
+<div style="">
+
+    <div class="layui-tab layui-tab-card">
+        <ul class="layui-tab-title">
+            {foreach from=$tabList  item=row}
+                <li {if $configGroupId eq $row.id}class="layui-this"{/if}><a
+                            href="/?app={$app}&config_group_id={$row.id}">{$row.name}</a></li>
+            {/foreach}
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <form class="layui-form ">
+                    <input type="hidden" name="id" value="{$info.id}"/>
+                    {foreach from=$list item=row}
+
+                    {if $row.type eq 1}
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">{$row.name}</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="data[{$row.id}]" placeholder="请输入" autocomplete="off"
+                                        class="layui-input" value="{$row.content}">
+                            </div>
+                        </div>
+                    {/if}
+
+
+                    {if $row.type eq 2}
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">{$row.name}</label>
+                            <div class="layui-input-block">
+                                <textarea id="data_{$row.id}" name="data[{$row.id}]" data-index="0" data-id="{$row.id}"
+                                        class="layui-hide layedit">{$row.content}</textarea>
+                            </div>
+                        </div>
+
+                    {/if}
+
+
+                    {if $row.type eq 3}
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">{$row.name}</label>
+                            <div class="layui-input-block">
+                                <div class="layui-upload">
+
+                                    <div class="layui-upload-list">
+                                        <img img src="{$row.content}" class="layui-upload-img" id="img_data_{$row.id}" width="150px" height="150px">
+                                    </div>
+                                    <button type="button" class="layui-btn"  id="up_data_{$row.id}">上传图片 </button>
+                                    <input type="hidden" name="data[{$row.id}]" id="data_{$row.id}"  value="{$row.content}">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    {/if}
+
+
+                    {if $row.type eq 4}
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">{$row.name}</label>
+                            <div class="layui-input-block">
+                                <div class="custom-box">
+
+                                    {foreach from=$row.list  item=val name=custom}
+                                        <div class="layui-form-item" data-id="{$val.id}">
+
+                                            <div class="layui-input-inline" style="width: 500px" data-id="{$val.id}">
+                                                <label class="layui-form-label auto-id" data-text-tpl="AUTO_ID" style="padding: 0 15px;width: auto; line-height: 38px"> {$val.name}</label>
+
+                                                <div style="float: left; width: 80%;" class="list">
+                                                    {foreach from=$val.list item=v}
+                                                        <label class="control-label" style="float: left; line-height: 38px; margin-right:8px;"> {$v.name}</label>
+                                                        <input style="float: left; width: 50%;" type="text" class="layui-input form-control" data-name-tpl="data{$v.input_tpl}" name="data{$v.input}" value="{$v.content}"/>
+
+                                                        {if $v.tips}
+                                                            <div class="tips ml10"  style="color:darkgray; float: left;line-height: 38px; margin-left:8px;">{$v.tips}</div>
+                                                        {/if}
+                                                    {/foreach}
+                                                </div>
+
+                                                {if  $row.auto}
+                                                    <div style="margin: 10px 0  0 10px; float: left; width: auto;">
+                                                        {if $smarty.foreach.custom.index eq 0}
+                                                            <input type="button" class="btn btn-sm" onclick="autoAdd($(this))"
+                                                                    value="+">
+                                                        {else}
+                                                            <input type="button" class="btn btn-sm" onclick="autoDel($(this))"
+                                                                    value="-">
+                                                        {/if}
+                                                    </div>
+                                                {/if}
+                                            </div>
+                                        </div>
+                                    {/foreach}
+                                </div>
+
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    {/if}
+
+
+                    {/foreach}
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="setData">立即保存</button>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        layui.use(['form','layedit','upload'], function(){
+            var form = layui.form;
+            var layedit = layui.layedit;
+            var upload = layui.upload;
+
+            $ = layui.jquery;
+
+            layedit = layui.layedit;
+
+            layedit.set({
+                uploadImage: {
+                    url: _this_module_url + '/Index/upload_layedit',
+                }
+            });
+
+            {foreach from=$list item=row}
+
+            {if $row.type eq 2}
+                var index = layedit.build('data_{$row.id}');
+                $('#data_{$row.id}').attr('data-index', index);
+
+
+            {/if}
+
+
+            {if $row.type eq 3}
+                //执行实例
+                var uploadInst = upload.render({
+                    elem: '#up_data_{$row.id}' //绑定元素
+                    , url: _this_module_url + '/Index/upload' //上传接口
+                    , done: function (res) {
+                        if(res.status){
+                            $('#data_{$row.id}').val(res.data[0]);
+                            $('#img_data_{$row.id}').attr('src',res.data[0]);
+                        }
+                    }
+                    , error: function (res) {
+                        //请求异常回调
+                        layer.msg('网络繁忙，请稍候再试', {
+                            icon: 5
+                        });
+                    }
+                });
+            {/if}
+
+            {/foreach}
+
+
+
+            form.on('submit(setData)', function(data){
+                //富文本同步
+                var s = 0;
+                $("textarea").each(function(){
+                    var index2 = $(this).attr('data-index');
+                    var id = $(this).attr('data-id');
+
+                    $('#data_'+id).html(layedit.getContent(index2));
+
+                    layedit.sync(index2);
+                });
+
+                setDate();
+                return false;
+            });
+
+
+        });
+
+        function autoAdd($btn) {
+            $box = $btn.parent().parents(".custom-box");
+            var newId =  $btn.parent().parent().parent().parent(".custom-box").find(".layui-form-item").last().attr("data-id");
+            newId = parseInt(newId)+1;
+            var $newLine = $btn.parent().parent().parent(".layui-form-item").clone();
+            $newLine.attr("data-id", newId);
+            $newLine.find(".btn").val("-");
+            $newLine.find(".btn").removeAttr("onclick").attr("onclick", "autoDel($(this))");
+            //alert($btn.parents(".custom-box").find(".form-group").last().html());
+
+            $newLine.appendTo($btn.parents(".custom-box"));
+            $newLine.find(".auto-id").text(newId);
+            $newLine.find("input.form-control").each(function(){
+                $(this).attr("name", $(this).attr("data-name-tpl").replace("AUTO_ID", newId));
+                $(this).val("");
+            });
+
+        }
+
+        function  autoDel($obj) {
+            $box = $obj.parent().parents(".custom-box");
+            $obj.parent().parent().parent(".layui-form-item").remove();
+            lineId = 1;
+            $box.find(".layui-form-item").each(function () {
+                $line = $(this);
+                $line.find(".auto-id").text(lineId);
+
+                $line.find("input.form-control").each(function () {
+                    $(this).attr("name", $(this).attr("data-name-tpl").replace("AUTO_ID", lineId));
+                });
+                lineId++;
+            });
+        }
+        
+        
+        function setDate() {
+            var href = _this_controller_url + '/index';
+
+            layer.load();
+            var data = $('form').serializeObject();
+            $.post(href, data, function(res) {
+                layer.closeAll('loading');
+                if (false === res.status) {
+                    layer.alert(res.msg);
+                    return false;
+                }
+                layer.msg(res.msg, {
+                    time: 1000
+                }, function() {
+                    window.location.reload();
+                });
+            }, 'json');
+        }
+
+
+
+    </script>
+    <script type="text/javascript" src="{$assets_url}/js/main.js"></script>
+</div>
+{include file="layouts/footer.html"}

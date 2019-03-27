@@ -1,0 +1,608 @@
+body{
+    background-color: #ffffff;
+}
+.clearfloat:after{content:'';display:block;clear:both;height:0;overflow:hidden;visibility:hidden;}
+.clearfloat{zoom:1;}
+.mb26{
+    margin-bottom: 2.6rem!important;
+}
+.head{
+    position: fixed;
+    top: 0;
+    z-index: 12;
+    width: 100%;
+    height: 2.2rem;
+    background-color: #e53626;
+    display: block;
+}
+.head h3{
+    margin: 0 auto;
+    width: 10rem;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    text-align: center;
+    font-size: .75rem;
+    font-weight: 400;
+    color: #ffffff;
+    display: block;
+}
+.content{
+    margin: 2.2rem 0 0 0;
+}
+.details_box{
+    margin: 2.2rem 0 0 0;
+    padding: 0 .6rem .6rem;
+}
+.details_box h2{
+    padding-top: .6rem;
+    margin-bottom: .1rem;
+    width: 100%;
+    height: auto;
+    line-height: 1.2rem;
+    text-align: center;
+    font-size: .78rem;
+    color: #3a3a3a;
+    display: block;
+}
+.details_box span{
+    margin-bottom: .4rem;
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    font-size: .65rem;
+    color: #c5c5c5;
+    overflow: hidden;
+    display: block;
+}
+.details_box img{
+    margin: .25rem auto;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.details_box p{
+    margin-bottom: .25rem;
+    width: 100%;
+    height: auto;
+    line-height: 1.1rem;
+    font-size: .7rem;
+    color: #333333;
+    display: block;
+}
+
+
+
+/*互助信息*/
+.title_box{
+    padding: .6rem;
+    width: auto;
+    height: auto;
+    border-bottom: 1px solid #eeeeee;
+    display: block;
+}
+.title_box h3{
+    margin-bottom: .35rem;
+    width: 100%;
+    height: auto;
+    line-height: 1.2rem;
+    font-size: .8rem;
+    font-weight: 400;
+    color: #3a3a3a;
+    display: block;
+}
+.title_intor{
+    width: 80%;
+    height: auto;
+    line-height: 1rem;
+    font-size: .68rem;
+    color: #c5c5c5;
+    display: block;
+}
+.being_helped{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.being_helped img{
+    float: left;
+    width: 3.2rem;
+    height: 3.2rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 1px solid #d7d7d7;
+    display: inline-block;
+}
+.being_helped .being_helped_infor{
+    padding-left: 3.8rem;
+    width: auto;
+    height: auto;
+    display: block;
+}
+.being_helped .being_helped_infor .name{
+    padding: .25rem 0 0.1rem 0;
+    width: 100%;
+    height: 1.2rem;
+    display: block;
+}
+.being_helped .being_helped_infor .name label{
+    margin-right: .5rem;
+    float: left;
+    max-width: 50%;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    font-size: .72rem;
+    color: #878787;
+    overflow: hidden;
+    display: block;
+}
+.being_helped .being_helped_infor .name span{
+    float: left;
+    margin-top: .05rem;
+    padding: 0 .3rem;
+    max-width: 4rem;
+    height: 1.1rem;
+    line-height: 1rem;
+    text-align: center;
+    font-size: .68rem;
+    color: #ffffff;
+    background-color: #878787;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+}
+.data{
+    width: 100%;
+    height: 1.2rem;
+    overflow: hidden;
+    display: block;
+}
+.ml2{
+    margin-left: .2rem;
+}
+.data span{
+    margin-right: .15rem;
+    float: left;
+    width: auto;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    font-size: .65rem;
+    color: #c5c5c5;
+    display: block;
+}
+.require_box{
+    padding: .6rem;
+    width: auto;
+    height: auto;
+    border-bottom: 1px solid #eeeeee;
+    display: block;
+}
+.bottom_no{
+    border-bottom:none;
+}
+.require_box .require{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.require_box .require label{
+    float: left;
+    width: auto;
+    height: 1.1rem;
+    line-height: 1.1rem;
+    font-size: .7rem;
+    color: #878787;
+    display: block;
+}
+.require_box .require span{
+    float: left;
+    height: auto;
+    line-height: 1.1rem;
+    font-size: .7rem;
+    color: #878787;
+    display: block;
+}
+.require_box h3{
+    padding-bottom: .15rem;
+    width:100%;
+    height: auto;
+    line-height: 1rem;
+    font-size: .78rem;
+    font-weight: 400;
+    color: #333333;
+    display: block;
+}
+.require_box p{
+    width:100%;
+    height: auto;
+    line-height: 1.1rem;
+    font-size: .7rem;
+    color: #666666;
+    display: block;
+}
+.require_box img,
+.require_box image{
+    margin: 0.5rem auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.reward{
+    float: left;
+    max-width: 50%;
+    height: 1.4rem;
+    display: block;
+}
+.reward label{
+    float: left;
+    width: auto;
+    height: 1.4rem;
+    line-height: 1.41rem;
+    font-size: .78rem;
+    color: #3a3a3a;
+    display:block;
+}
+.reward span{
+    float: left;
+    width: auto;
+    height: 1.4rem;
+    line-height: 1.4rem;
+    font-size: .78rem;
+    color: #e14222;
+    display: block;
+}
+.reward_a{
+    float: right;
+    width: 4rem;
+    height: 1.4rem;
+    line-height: 1.4rem;
+    text-align: center;
+    font-size: .7rem;
+    color: #ffffff;
+    background-color: #e14222;
+    border-radius: 15px;
+    display: block;
+}
+
+.message_area{
+    margin: .5rem 0 0 0;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.message_area img{
+    float: left;
+    width: 3.2rem;
+    height: 3.2rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 1px solid #d7d7d7;
+    display: inline-block;
+}
+.message_area .message_box{
+    padding-top: .5rem;
+    padding-left: 3.8rem;
+    width: auto;
+    height: auto;
+    display: block;
+}
+.message_area .message_box .message_name,
+.message_area .message_box .message_infor{
+    margin-bottom: .2rem;
+    width: 100%;
+    height: 1.1rem;
+    display: block;
+}
+.message_area .message_box .message_name label,
+.message_area .message_box .message_infor p{
+    float: left;
+    width: 50%;
+    height: 1.1rem;
+    line-height: 1.1rem;
+    text-align: left;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.message_area .message_box .message_name span,
+.message_area .message_box .message_infor em{
+    float: right;
+    height: 1.1rem;
+    line-height: 1.1rem;
+    text-align: right;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.message_area .message_box .message_name label{
+    font-size: .72rem;
+    color: #878787;
+}
+.message_area .message_box .message_name span{
+    width: 50%;
+    font-size: .7rem;
+    color: #878787;
+}
+.message_area .message_box .message_infor p{
+    font-size: .72rem;
+    color: #878787;
+}
+.message_area .message_box .message_infor em{
+    padding: 0 .3rem;
+    max-width: 50%;
+    font-size: .68rem;
+    font-style: normal;
+    color: #ffffff;
+    background-color: #878787;
+    border-radius: 6px;
+}
+
+/*兼职职位信息*/
+.title_infor{
+    width: 100%;
+    height:  .9rem;
+    overflow: hidden;
+    display: block;
+}
+.title_infor span{
+    margin-right: .2rem;
+    float: left;
+    width: auto;
+    height: .9rem;
+    line-height:  .9rem;
+    font-size: .65rem;
+    color: #c5c5c5;
+    display: block;
+}
+.enterprise{
+    margin-top: .1rem;
+    width: 100%;
+    height: 1.2rem;
+    display: block;
+}
+.enterprise label{
+    float: left;
+}
+.enterprise span{
+    float: left;
+}
+.enterprise label,
+.enterprise span{
+    width: auto;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    font-size: .7rem;
+    color: #878787;
+    display: block;
+}
+.enterprise em{
+    float: left;
+    margin: .1rem 0 0 .4rem;
+    width: auto;
+    padding: 0 .4rem;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: .65rem;
+    font-style: normal;
+    color: #ffffff;
+    background-color: #e54f2a;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    display: block;
+}
+.enterprise_intor{
+    padding-left: 1rem;
+    width: auto;
+    height: auto;
+    line-height: 1.2rem;
+    font-style: normal;
+    font-size: .7rem;
+    color: #878787;
+    background: url("../images/icon/infor1.png") no-repeat 0 center;
+    background-size: auto .7rem;
+    display: block;
+}
+
+/*猎头职位信息*/
+.enterprise_infor{
+    margin-top: .45rem;
+    margin-bottom: .2rem;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.enterprise_infor img{
+    float: left;
+    width: 3.3rem;
+    height: 3.3rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    display: inline-block;
+}
+.enterprise_infor .company{
+    padding-left: 3.8rem;
+    width: auto;
+    height: auto;
+    display: block;
+}
+.enterprise_infor .company label{
+    padding-top: .2rem;
+    width: 100%;
+    height: auto;
+    line-height: 1rem;
+    font-size: .72rem;
+    color: #3a3a3a;
+    display: block;
+}
+.enterprise_infor .company span{
+    width: 100%;
+    height: auto;
+    line-height: 1rem;
+    font-size: .68rem;
+    color: #878787;
+    display: block;
+}
+.enterprise_infor .company em{
+    width: 100%;
+    height: auto;
+    line-height: .9rem;
+    font-size: .64rem;
+    font-style: normal;
+    color: #878787;
+    display: block;
+}
+.welfare{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.welfare span{
+    float: left;
+    margin-right: .5rem;
+    margin-top: .45rem;
+    width: 22.7%;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    text-align: center;
+    font-size: .68rem;
+    color: #999999;
+    background-color: #eeeeee;
+    border-radius: 15px;
+    display: block;
+}
+.welfare span:nth-child(4n){
+    margin-right:0;
+}
+
+.related_positions{
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #eeeeee;
+    display: block;
+}
+.related_positions .job{
+    padding: .3rem 0;
+    float: left;
+    width: 80%;
+    height: auto;
+    display: block;
+}
+.related_positions .job label{
+    margin: .1rem 0;
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: .78rem;
+    color: #878787;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.related_positions .job .title_infor{
+
+}
+.related_positions .wages{
+    float: right;
+    width: 20%;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: right;
+    font-size: .78rem;
+    color: #e14222;
+    display: block;
+}
+
+
+
+.bg_f0{
+    width: 100%;
+    height: .4rem;
+    background-color: #f0f0f0;
+    display: block;
+}
+.fixed_down {
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    font-size: .7rem;
+    color: #21262f;
+    /*background-color: rgba(255, 255, 255,.9);*/
+    background-color: #FFFFFF;
+    overflow: hidden;
+    display: block;
+}
+.fixed_down img {
+    float: left;
+    margin: .35rem .26rem .35rem .35rem;
+    width: 1.9rem;
+    height: 1.9rem;
+    display: block;
+}
+.fixed_down span {
+    position: absolute;
+    z-index: 9999;
+    left: 2.55rem;
+    padding: .3rem 0;
+    width: -moz-calc(100% - 3.0rem - 20%);
+    width: -webkit-calc(100% - 3.0rem - 20%);
+    width: calc(100% - 3.0rem - 20%);
+    height: 100%;
+    line-height: 1rem;
+    font-size: .65rem;
+    color: #21262f;
+    overflow: hidden;
+    display: block;
+}
+.fixed_down a {
+    position: absolute;
+    z-index: 9999;
+    right: 0;
+    margin: .75rem .35rem;
+    width: 20%;
+    height: 1.1rem;
+    text-align: center;
+    line-height: 1.1rem;
+    color: #fff;
+    font-size: .68rem;
+    background-color: #388cff;
+    border-radius: .25rem;
+    overflow: hidden;
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

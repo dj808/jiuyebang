@@ -1,0 +1,331 @@
+<div style="margin: 15px; margin-right: 30px; margin-top: 50px;">
+    <form class="layui-form record-form">
+        <input type="hidden" name="id" value="{$info['id']|default:''}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">招聘名称</label>
+            <div class="layui-input-block" width="120">
+                <input type="text" name="title" value="{$info['title']|default:''}" lay-verify="title" placeholder="请输入工作名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司名称</label>
+            <div class="layui-input-inline">
+                <select name="company_id" lay-filter="select-role" lay-verify="company_id">
+                    <option value="">-- 选择公司名称 --</option>
+                    {foreach from=$companyList key=key item=row}
+                    <option value="{$row.id}" {if $info.company_id eq $row.id }selected{/if}>{$row.name}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">工作地址</label>
+            <div class="layui-input-block">
+                {local app=city act=select param1=$info.prov_id  param2=$info.city_id  param3=$info.dist_id }
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">详细地址</label>
+            <div class="layui-input-block">
+                <input type="text" name="address" value="{$info['address']|default:''}" lay-verify="address" placeholder="请输入地址" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">薪资类型</label>
+            <div class="layui-input-inline">
+                <select name="money_type" lay-filter="select-role" lay-verify="money_type">
+                    <option value="">-- 选择薪资类型 --</option>
+                    {foreach from=$typeList key=key item=row}
+                    <option value="{$row.id}" {if $info.money_type eq $row.id }selected{/if}>{$row.name}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">岗位类型</label>
+            <div class="layui-input-inline">
+                <select name="industry_id" lay-filter="select-role" lay-verify="industry_id">
+                    <option value="">-- 选择岗位类型 --</option>
+                    {foreach from=$job_industry key=key item=row}
+                    <option value="{$row.id}" {if $info.industry_id eq $row.id }selected{/if}>{$row.name}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">性别要求</label>
+            <div class="layui-input-block" >
+                <input type="radio" name="sex" value="0" lay-verify="required"  autocomplete="off" class="layui-input" title="不限" {if $info['sex'] eq 0 }checked='checked'{/if}>
+                <input type="radio" name="sex" value="1" lay-verify="required"  autocomplete="off" class="layui-input" title="男" {if $info['sex'] eq 1 }checked='checked'{/if}>
+                <input type="radio" name="sex" value="2" lay-verify="required"  autocomplete="off" class="layui-input" title="女" {if $info['sex'] eq 2 }checked='checked'{/if}>
+                </div>
+        </div>
+        <!--<div class="layui-form-item">
+            <label class="layui-form-label">语言要求</label>
+            <div class="layui-input-inline">
+                <input type="text" name="language" value="{$info['language']|default:''}" lay-verify="language" placeholder="请输入语言要求" autocomplete="off" class="layui-input">
+            </div>
+        </div>-->
+        <!--<div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">招聘人数</label>
+                <div class="layui-input-inline" style="width: 100px;">
+                    <input type="text" name="num_lower" placeholder="人" lay-verify="number|num_lower" autocomplete="off" class="layui-input" value="{$info['num_lower']|default:''}">
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 100px;">
+                    <input type="text" name="num_upper" placeholder="人" lay-verify="number|num_upper"  autocomplete="off" class="layui-input" value="{$info['num_upper']|default:''}">
+                </div>
+            </div>
+        </div>-->
+        <div class="layui-form-item">
+            <label class="layui-form-label">招聘人数</label>
+            <div class="layui-input-block">
+                <input type="text" name="num_lower" value="{$info['num_lower']|default:''}" lay-verify="number|num_lower"  autocomplete="off" class="layui-input" style="width:200px;">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">薪资待遇</label>
+            <div class="layui-input-block">
+                <input type="text" name="money_upper" value="{$info['money_upper']|default:''}" lay-verify="number|money_upper" placeholder="￥" autocomplete="off" class="layui-input" style="width:200px;">
+            </div>
+        </div>
+       <!-- <div class="layui-form-item">
+            <label class="layui-form-label">学历要求</label>
+            <div class="layui-input-inline">
+                <select name="education" lay-filter="select-role" lay-verify="education">
+                    <option value="">&#45;&#45; 选择学历要求 &#45;&#45;</option>
+                    {foreach from=$edulist key=key item=row}
+                    <option value="{$key}" {if $info.education eq $key }selected{/if}>{$row}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>-->
+        <div class="layui-form-item">
+            <label class="layui-form-label">经验要求</label>
+            <div class="layui-input-inline">
+                <select name="experience" lay-filter="select-role" lay-verify="experience">
+                    <option value="">-- 选择经验要求 --</option>
+                    {foreach from=$job_time key=key item=row}
+                    <option value="{$key}" {if $info.experience eq $key }selected{/if}>{$row}</option>
+                    {/foreach}
+
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所属行业</label>
+            <div class="layui-input-block">
+                {foreach from=$job_type key=key item=row}
+                <input type="checkbox" value="{$key}" name="job_type_ids[]"  title="{$row}" {if in_array($key,$info.job_type_ids)}checked=""{/if}>
+                {/foreach}
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">职位标签</label>
+            <div class="layui-input-block">
+                {foreach from=$job_tag key=key item=row}
+                <input type="checkbox" value="{$key}" name="tag_ids[]" title="{$row}" {if in_array($key,$info.tag_ids)}checked=""{/if}>
+                {/foreach}
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">年龄范围</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="age_lower" name="age_lower" value="{$info['age_lower']|default:''}" lay-verify=""  autocomplete="off" class="layui-input" placeholder="请输入最小年龄" style="width:200px;">
+                </div>
+                <div class="layui-form-mid">至</div>
+                <div class="layui-input-inline">
+                    <input type="text" id="age_upper"  name="age_upper" value="{$info['age_upper']|default:''}" lay-verify="" autocomplete="off" class="layui-input" placeholder="请输入最大年龄"  style="width:200px;">
+                </div>
+                <div class="layui-form-mid layui-word-aux">年龄范围为16-50</div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否连做</label>
+            <div class="layui-input-block">
+                <input type="radio" name="is_continue" value="1" lay-verify=""  autocomplete="off" class="layui-input" title="是" {if $info['is_continue'] eq 1 }checked='checked'{/if}>
+                <input type="radio" name="is_continue" value="2" lay-verify=""  autocomplete="off" class="layui-input" title="否" {if $info['is_continue'] eq 2 }checked='checked'{/if}>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">需要面试</label>
+            <div class="layui-input-block">
+                <input type="radio" name="is_interview" value="1" lay-verify=""  autocomplete="off" class="layui-input" title="是" {if $info['is_interview'] eq 1 }checked='checked'{/if}>
+                <input type="radio" name="is_interview" value="2" lay-verify=""  autocomplete="off" class="layui-input" title="否" {if $info['is_interview'] eq 2 }checked='checked'{/if}>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">联系人</label>
+            <div class="layui-input-block">
+                <input type="text" name="link_person" value="{$info['link_person']|default:''}" lay-verify="link_person" placeholder="请输入联系人" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">联系方式</label>
+            <div class="layui-input-block">
+                <input type="radio" name="link_type" value="1" lay-verify=" "  autocomplete="off" class="layui-input" title="手机" {if $info['link_type'] eq 1 }checked='checked'{/if}>
+                <input type="radio" name="link_type" value="2" lay-verify=" "  autocomplete="off" class="layui-input" title="微信" {if $info['link_type'] eq 2 }checked='checked'{/if}>
+                <input type="radio" name="link_type" value="3" lay-verify=" "  autocomplete="off" class="layui-input" title="QQ" {if $info['link_type'] eq 3 }checked='checked'{/if}>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">联系电话</label>
+            <div class="layui-input-block">
+                <input type="text" name="link_phone" value="{$info['link_phone']|default:''}" lay-verify="link_phone" placeholder="请输入联系电话" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+       <!-- <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">上班时期</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="date_start" name="date_start" value="{$info['date_start']|default:''}" lay-verify=""  autocomplete="off" class="layui-input" placeholder="请输入工作开始日期" style="width:200px;">
+                </div>
+                <div class="layui-form-mid">至</div>
+                <div class="layui-input-inline">
+                    <input type="text" id="date_end"  name="date_end" value="{$info['date_end']|default:''}" lay-verify="" autocomplete="off" class="layui-input" placeholder="请输入工作开始日期"  style="width:200px;">
+                </div>
+                <div class="layui-form-mid layui-word-aux">格式以“12/1,或周*”书写</div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">上班时间</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="time_start" name="time_start" value="{$info['time_start']|default:''}" lay-verify=""  autocomplete="off" class="layui-input" placeholder="请输入上班开始时间"  style="width:200px;">
+                </div>
+                <div class="layui-form-mid">至</div>
+                <div class="layui-input-inline">
+                    <input type="text" id="time_end"  name="time_end" value="{$info['time_end']|default:''}" lay-verify="" autocomplete="off" class="layui-input"  placeholder="请输入上班结束时间" style="width:200px;">
+                </div>
+                <div class="layui-form-mid layui-word-aux">格式“12:00”,不填为“报名后通知”</div>
+            </div>
+        </div>-->
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">上班时间</label>
+            <div class="layui-input-block">
+                <textarea  class="layui-textarea" placeholder="时间格式为2018—1-1"  name="time_group">{$info['time_group']|default:''}</textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">工作内容</label>
+            <div class="layui-input-block">
+                <textarea  class="" name="content"   id="myEditor">{$info['content']|default:''}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-block">
+                <input type="radio" name="status" value="1"  autocomplete="off" class="layui-input" title="开" {if $info['status'] eq 1 }checked='checked'{/if}>
+                <input type="radio" name="status" value="2"   autocomplete="off" class="layui-input" title="关" {if $info['status'] eq 2 }checked='checked'{/if}>
+            </div>
+        </div>
+        <div>&nbsp;</div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">审核状态</label>
+            <div class="layui-input-inline">
+                <select name="auth_status" lay-filter="auth_status" >
+                    <option value="">--请选择审核状态--</option>
+                    {foreach from=$statusList key=key item=row}
+                    <option value="{$row.id}" {if $info.auth_status eq $row.id }selected{/if}>{$row.name}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item" id="res_status">
+            <label class="layui-form-label">未通过原因</label>
+            <div class="layui-input-block" >
+                <input type="text" name="res_status"  value="{$info['res_status']|default:''}" lay-verify="" placeholder="请输入未通过原因" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div><br><br><br><br><br></div>
+        <div class="layui-form-item layui-hide">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="edit">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+layui.use(['form', 'layedit', 'laydate','ueditor'], function(){
+    var $ = layui.jquery,
+        form = layui.form,
+        layer = layui.layer,
+        layedit = layui.layedit;
+
+    //建立富文本编辑器
+    var ueditor = layui.ueditor;
+    ueditor.init({
+        elm:"myEditor",//编辑器所在元素
+        opt:null,//原始编辑器创建时带的参数
+
+        // configUrl:"./ueditor.config.js",// 采用自定义的配置文件，不用官方的配置文件
+        serverUrl: null,//  服务器统一请求接口路径，官方示例为jsp/controller.jsp，可重置此接口地址
+        // 当初始化完成时，会执行此方法，返回创建的editor编辑器实例
+        done: function (editor) {
+
+        }
+    });
+    //板块监听
+    form.on('select(auth_status)', function(data){
+        var type = data.value;
+        change(type);
+    });
+
+    function change(type) {
+        if(3==type){
+            $('#res_status').show();
+        }else{
+            $('#res_status').hide();
+        }
+    }
+
+    //自定义验证规则
+    form.verify({
+           title: function(value){
+               if(!value)
+                   return '标题不能为空';
+
+                if(value.length < 3)
+                    return '标题至少得3个字符啊';
+          },
+            require: function(value){
+            if(value.length < 4){
+                return '职位要求请输入至少4个字符';
+            }
+          },
+           num_lower: function(value){
+            if(!value)
+               return '标题不能为空';
+
+            if(value.length < 1)
+                return '人数下限不能为0';
+
+          },
+           num_upper: function(value){
+               if(!value)
+                   return '标题不能为空';
+
+             if(value.length > 100)
+                return '人数下限不能超过100';
+          },
+
+        link_phone: function(input) {
+            var regex = /^1[345789]{1}\d{9}$/;
+            if(input.match(regex)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    });
+
+});
+
+</script>

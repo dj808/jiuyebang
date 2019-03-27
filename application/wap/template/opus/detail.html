@@ -1,0 +1,96 @@
+{include file="./header.html"}
+
+{if $canVote ==2 OR $voteStatus ==1}
+<div class="result_box">
+    <img src="/assets/images/vote/fail.png"/>
+    <h2>{$note}</h2>
+    <span>{$note1}</span>
+</div>
+{/if}
+
+<div class="work_intro">
+    <div class="vote_box" style="width: 72.89%; margin: 0 auto; float: none;">
+        <a href="#" class="vote_img">
+            <img src="{$info.cover}" class=""/>
+            <span>{$info.id}</span>
+        </a>
+        <div class="vote_intor">
+            <a href="javascript:void(0);" class=""><h3 class="vote_intor_h3">{$info.title}</h3></a>
+            <a href="javascript:void(0);" class=""><span class="vote_intor_span">{$info.school}</span></a>
+        </div>
+    </div>
+    <div class="work_intro_text">
+        <h3>作品介绍</h3>
+        {$info.detail}
+    </div>
+</div>
+<span class="ballot"><img src="/assets/images/vote/fabulous_02.png" class=""/>票数：{$info.vote_num}</span>
+<div class="btn_box clearfloat">
+    {if $canVote !=2 && $voteStatus != 1 }
+        <button type="button" onclick="vote()">投TA一票</button>
+    {/if}
+
+    <button type="button" onclick="share()">分享</button>
+</div>
+
+
+<script>
+    var isMobile = {
+        Android: function () {
+            return navigator.userAgent.match(/Android/i) ? true : false;
+        },
+        iOS: function () {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
+        }
+    };
+    var handler = {
+        callHander: function (json) {
+            if (isMobile.iOS()) {
+                Jiuyebang.share(JSON.stringify(json));
+            }
+            if (isMobile.Android()) {
+                window.action.share(JSON.stringify(json));
+            }
+        }
+    };
+
+    function share() {
+        handler.callHander({
+            'func':'share' ,
+            'share_url':'{$info.share_url}' ,
+            'img_url':'{$info.share_img_url}' ,
+            'title':'{$info.share_title}',
+            'describe':'{$info.share_describe}'
+        });
+    }
+
+    function vote() {
+        var data = {
+            'id' : '{$info.id}',
+            'user_id' : '{$user_id}',
+        };
+
+
+        $.confirm("每项目仅可投票一次，确认投票吗？", function() {
+            $.post("/?app=opus&act=vote",data,function(res) {
+                if (false === res.status) {
+                    $.alert(res.msg);
+                    return false;
+                }
+                $.alert("投票成功", "提示", function() {
+                    window.location.reload();
+                });
+
+            }, 'json');
+        });
+
+
+
+
+    }
+
+
+
+</script>
+
+{include file="./foot.html"}

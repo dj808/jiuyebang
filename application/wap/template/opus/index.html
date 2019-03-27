@@ -1,0 +1,47 @@
+{include file="./header.html"}
+
+<div class="intro_box">
+    <p>活动介绍：最强红色基因互联网大学生创业大赛开始啦，快来为你喜欢的项目投票吧！</p>
+    <span>{$note}</span>
+</div>
+<div class="search_box clearfloat">
+    <input type="text" class="" placeholder="搜索院校，作品名称" value="{$keyword}" id="keyword" name="keyword"/>
+    <button type="button" class="" onclick="serch();">搜索</button>
+</div>
+<div class="list_box">
+    {foreach from=$list item=row}
+        <div class="vote_box">
+            <a href="/?app=opus&act=detail&id={$row.id}&user_id={$user_id}" class="vote_img">
+                <img src="{$row.cover}"/>
+                <span>{$row.id}</span>
+            </a>
+            <div class="vote_intor">
+                <a href="/?app=opus&act=detail&id={$row.id}&user_id={$user_id}"><h3 class="vote_intor_h3">{$row.title}</h3></a>
+                <a href="/?app=opus&act=detail&id={$row.id}&user_id={$user_id}"><span class="vote_intor_span">{$row.school}</span></a>
+                <a href="/?app=opus&act=detail&id={$row.id}&user_id={$user_id}"><button type="button" class="vote_intor_button">投票</button></a>
+                <div class="operation clearfloat">
+                    <span>{$row.look_num}</span>
+                    <span>{$row.vote_num}</span>
+                </div>
+            </div>
+        </div>
+    {/foreach}
+</div>
+
+<script>
+    function serch() {
+        var keyword = $('#keyword').val();
+
+        if(!keyword){
+            $.alert("请输入院校或作品名称");
+            return false;
+        }
+
+        if(keyword){
+            window.location.href = "/?app=opus&act=index&user_id={$user_id}&keyword="+keyword;
+        }
+    }
+</script>
+
+
+{include file="./foot.html"}

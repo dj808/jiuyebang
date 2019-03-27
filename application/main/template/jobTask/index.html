@@ -1,0 +1,136 @@
+{include file="layouts/header.html"}
+<div style="">
+    <blockquote class="layui-elem-quote ala-search-bar">
+        <form class="layui-form layui-inline">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <input type="text" name="search" placeholder="职位或公司" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <select name="company_id" class="newsLook" lay-filter="search-select">
+                            <option value="">请选择公司</option>
+                            {foreach from=$companyList key=key item=row}
+                            <option value="{$row.id}">{$row.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <select name="money_type" class="newsLook" lay-filter="search-select">
+                            <option value="">请选择薪水类型</option>
+                            {foreach from=$typeList key=key item=row}
+                            <option value="{$row.id}">{$row.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-sm ala-btn-search" lay-submit lay-filter="search"><i class="layui-icon">&#xe615;</i>搜索</button>
+                </div>
+            </div>
+        </form>
+        <div class="layui-inline fr">
+            <button class="layui-btn layui-btn-sm ala-btn-add" data-opt="edit" data-id="0"><i class="layui-icon">&#xe654;</i>添加</button>
+        </div>
+    </blockquote>
+    <div style="padding: 0 10px;">
+        <table id="list" lay-filter="list-table" data-sort="true"></table>
+    </div>
+    <script type="text/html" id="list-bar">
+        <div class="layui-btn-group">
+            <button class="layui-btn layui-btn-sm" lay-event="edit" title="编辑"><i class="fa fa-pencil-square-o"></i></button>
+           <!-- <button class="layui-btn layui-btn-sm" lay-event="del" title="删除"><i class="fa fa-trash"></i></button>-->
+        </div>
+    </script>
+    <script>
+    layui.use(['form', 'layer', 'table'], function() {
+        var $ = layui.jquery,
+            form = layui.form,
+            layer = layui.layer,
+            table = layui.table;
+
+        layer.load();
+        table.render({
+            id: 'list',
+            elem: '#list',
+            width: 'auto',
+            height: 'full-70',
+            cols: [
+                [{
+                    field: 'id',
+                    title: 'ID',
+                    width: 50,
+                    sort: true,
+                },{
+                    field: 'title',
+                    title: '职位',
+                    width: 150,
+                },
+                    {
+                    field: 'company_id',
+                    title: '公司名称',
+                    width: 150,
+                },{
+                    field: 'money_type',
+                    title: '薪水类型',
+                    width: 100,
+                },{
+                    field: 'link_person',
+                    title: '联系人',
+                    width: 150,
+                    sort: true,
+                },{
+                    field: 'link_phone',
+                    title: '联系电话',
+                    width: 150,
+                    sort: true,
+                },{
+                    field: 'city_name',
+                    title: '地址',
+                    width: 150,
+                    sort: true,
+                },{
+                    field: 'look_num',
+                    title: '查看次数',
+                    width: 100,
+                    sort: true,
+                },{
+                    field: 'add_time',
+                    title: '添加时间',
+                    width: 150,
+                    sort: true,
+                },{
+                    field: 'upd_time',
+                    title: '更新时间',
+                    width: 150,
+                    sort: true,
+                },{
+                    title: '操作',
+                    width: 150,
+                    fixed: 'right',
+                    align: 'center',
+                    toolbar: '#list-bar',
+                }]
+            ],
+            url: _this_controller_url + '/ajax_list',
+            method: 'get',
+            where: {},
+            page: true,
+            limits: [10, 20, 50, 100],
+            limit: 10,
+            loading: false,
+            even: true,
+            done: function(res, curr, count) {
+
+                layer.closeAll('loading');
+            },
+        });
+    });
+    </script>
+    <script type="text/javascript" src="{$assets_url}/js/main.js"></script>
+</div>
+{include file="layouts/footer.html"}
